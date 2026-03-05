@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O mnie – IB Polish</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* wymuszony kolor nagłówków */
+    h1, h2, h3 { color: #5b9ab5 !important; }
+    .btn { background: #5b9ab5 !important; }
+    .btn:hover { background: #7ab5cc !important; }
+
+    /* SEKCJA 1 – text left, image right */
+    .about-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+    .about-hero h1 { margin-bottom: 1.5rem; }
+    .about-hero p { text-align: justify; font-size: 1rem; line-height: 1.8; }
+    .about-hero img { width: 100%; border-radius: 16px; box-shadow: 0 12px 48px rgba(91,154,181,0.2); }
+    @media (max-width: 768px) {
+      .about-hero { grid-template-columns: 1fr; }
+      .about-hero .img-col { order: -1; }
+      .about-hero p { text-align: left; }
+    }
+
+    /* SEKCJA 2 – dwie kolumny z wyśrodkowanymi nagłówkami */
+    .two-col-centered {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .two-col-centered h2 { text-align: center; margin-bottom: 1.2rem; }
+    .two-col-centered p { text-align: justify; font-size: 1rem; line-height: 1.8; }
+    @media (max-width: 768px) { .two-col-centered { grid-template-columns: 1fr; } }
+
+    /* SEKCJA 3 – Co to znaczy dla Ciebie – wyśrodkowane */
+    .benefits-section { max-width: 780px; margin: 0 auto; text-align: center; }
+    .benefits-section h2 { margin-bottom: 0.4rem; }
+    .benefits-section .sub { color: var(--text-light); margin-bottom: 1.8rem; font-weight: 600; }
+    .benefits-list { list-style: none; text-align: center; }
+    .benefits-list li {
+      padding: 0.4rem 0 0.4rem 1.6rem;
+      position: relative;
+      font-size: 1rem;
+      line-height: 1.7;
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+    }
+    .benefits-list li::before {
+      content: '›';
+      position: absolute; left: 0;
+      color: var(--blue); font-weight: 700; font-size: 1.2rem; line-height: 1.5;
+    }
+    .benefits-note { margin: 1.5rem 0 2rem; font-size: 1rem; }
+
+    /* SEKCJA 4 – Jak pracujemy – obraz z lewej, lista z prawej */
+    .how-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .how-grid img { width: 100%; border-radius: 16px; box-shadow: 0 8px 32px rgba(91,154,181,0.16); }
+    .how-grid h2 { margin-bottom: 1.2rem; }
+    .how-grid .check-list li { font-size: 1rem; line-height: 1.75; }
+    @media (max-width: 768px) { .how-grid { grid-template-columns: 1fr; } }
+
+    /* SEKCJA 5 – Jeśli chcesz sprawdzić */
+    .try-section { text-align: center; }
+    .try-section h2 { margin-bottom: 1rem; font-size: clamp(1.4rem, 3vw, 2rem); }
+    .try-section p { max-width: 620px; margin: 0 auto 2rem; color: var(--text); font-size: 1rem; }
+    .try-tagline { font-size: 0.85rem; color: var(--text-light); margin-top: 1rem; letter-spacing: 0.03em; }
+  
+/* Language switcher dropdown */
+.lang-switch-wrapper { position: relative; list-style: none; }
+.lang-switch-btn {
+  background: none; border: 1px solid var(--border);
+  border-radius: 6px; padding: 0.3rem 0.7rem;
+  font-family: 'Nunito', sans-serif; font-size: 0.88rem;
+  font-weight: 600; color: var(--blue); cursor: pointer;
+  white-space: nowrap; transition: background 0.2s;
+}
+.lang-switch-btn:hover { background: var(--blue-bg); }
+.lang-dropdown {
+  display: none; position: absolute; right: 0; top: 110%;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 8px; min-width: 150px; z-index: 1000;
+  box-shadow: 0 4px 16px rgba(91,154,181,0.12);
+  padding: 0.3rem 0;
+}
+.lang-dropdown.open { display: block; }
+.lang-dropdown a {
+  display: block; padding: 0.5rem 1rem;
+  font-size: 0.88rem; color: var(--text);
+  text-decoration: none; transition: background 0.15s;
+}
+.lang-dropdown a:hover { background: var(--blue-bg); color: var(--blue); }
+.lang-dropdown a.lang-active { font-weight: 700; color: var(--blue); }
+
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="logo.jpg" alt="IB Polish logo">
+    <span class="nav-logo-text">IB Polish</span>
+  </a>
+  <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
+    <li><a href="index.html">Strona główna</a></li>
+    <li><a href="o-mnie.html" class="active">O mnie</a></li>
+    <li class="nav-dropdown"><a href="oferta.html">Oferta</a>
+      <div class="dropdown-menu">
+        <a href="zajecia-indywidualne.html">Zajęcia indywidualne</a>
+        <a href="zajecia-mini-grupy.html">Zajęcia w mini grupach</a>
+        <a href="przygotowanie-do-egzaminu.html">Przygotowanie do egzaminu</a>
+      </div>
+    </li>
+    <li><a href="opinie.html">Opinie</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="test.html">Test językowy</a></li>
+    <li><a href="kontakt.html" class="btn" style="padding:0.45rem 1.2rem;font-size:0.88rem;">Kontakt</a></li>
+    <li class="lang-switch-wrapper">
+      <button class="lang-switch-btn" id="lang-switch-btn">🇵🇱 <span>PL</span> ▾</button>
+      <div class="lang-dropdown" id="lang-dropdown">
+        <a href="o-mnie.html" class="lang-active">🇵🇱 PL</a>
+        <a href="ru/o-mnie.html">🇷🇺 RU</a>
+        <a href="by/o-mnie.html">🇧🇾 BY</a>
+        <a href="ua/o-mnie.html">🇺🇦 UA</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<!-- ══ SEKCJA 1: O MNIE – tekst po lewej, zdjęcie po prawej ══ -->
+<section style="background:#fff;">
+  <div class="about-hero">
+    <div class="text-col">
+      <h1>O mnie</h1>
+      <p><em><strong>Cześć!</strong></em></p>
+      <p>Mam na imię Izabela i jestem <strong>native speakerem</strong> języka polskiego i <strong>lektorką języka polskiego jako obcego</strong>. Jestem również <strong>egzaminatorką na egzaminach państwowych z języka polskiego jako obcego</strong>.</p>
+      <p>Jestem absolwentką studiów licencjackich i magisterskich na kierunku "<strong>filologia rosyjska</strong>" na Uniwersytecie Jagiellońskim w Krakowie, ukończyłam <strong>dwuletni kurs pedagogiczny</strong> Studium Pedagogicznego Uniwersytetu Jagiellońskiego, a także studia podyplomowe na Uniwersytecie Marii Curie-Skłodowskiej w Lublinie na kierunku "<strong>nauczanie języka polskiego jako obcego</strong>".</p>
+      <p>Języka polskiego uczę obcokrajowców już od <strong>ponad pięciu lat</strong>. Pracowałam w szkołach językowych w Polsce oraz za granicą (Ukraina, Białoruś, Słowacja). Ciągle <strong>poszerzam swoją wiedzę</strong>, biorąc udział w kursach i szkoleniach z zakresu nauczania języka polskiego jako obcego. Dzięki temu moi uczniowie uczą się w sposób <strong>uporządkowany</strong>, bez chaosu i stresu, a jednocześnie z realnymi <strong>efektami</strong> w mówieniu.</p>
+      <p>Tworzę autorskie materiały, które mają pomóc w nauce języka polskiego. Prowadzę zajęcia online <strong>indywidualne</strong> i w <strong>mini grupach</strong> dla osób <strong>dorosłych</strong>, które chcą swobodnie i pewnie komunikować się po polsku.</p>
+      <p>Moje motto to "<strong>mów lepiej niż Polak</strong>" – czyli mów świadomie, naturalnie i bez strachu.</p>
+    </div>
+    <div class="img-col">
+      <img src="img_teacher.png" alt="Izabela – lektorka IB Polish">
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══ SEKCJA 2: PROFESJONALNA NAUKA + DLACZEGO ZE MNĄ ══ -->
+<section class="section" style="background:var(--blue-bg);">
+  <div class="two-col-centered">
+    <div>
+      <h2>Profesjonalna nauka języka polskiego</h2>
+      <p>Moje podejście opiera się na dobraniu indywidualnych metod do każdego ucznia i dostosowaniu programu nauczania do jego potrzeb i celów. Staram się również tworzyć <strong>przyjazną i motywującą atmosferę</strong> na zajęciach, aby moi uczniowie mogli <strong>swobodnie</strong> uczyć się języka polskiego, a potem mogli go wykorzystywać w życiu codziennym. Specjalizuję się w pracy z osobami uczącymi się języka w sposób naturalny – poprzez rozmowę, oraz w przygotowywaniu do <strong>egzaminów certyfikatowych z języka polskiego jako obcego</strong> (poziomy B1–B2), <strong>egzaminów TELC</strong>, a także do <strong>rozmów na Kartę Polaka</strong>. Specjalizuję się w indywidualnych i grupowych lekcjach online dla osób dorosłych, dostosowanych do ich potrzeb i poziomu zaawansowania.</p>
+    </div>
+    <div>
+      <h2>Dlaczego warto się uczyć polskiego ze mną?</h2>
+      <p>Bo język polski to coś więcej niż gramatyka. To nie tylko wkuwanie słówek, a <strong>wchodzenie w nowy świat</strong>. Staram się na naszych zajęciach stworzyć przestrzeń, w której łączymy <strong>praktyczną komunikację z myśleniem, kulturą i autentycznym językiem</strong>. Uczysz się polskiego tak, jak się go naprawdę używa — w rozmowach, tekstach, argumentach i emocjach. Pracujemy na materiałach <strong>dopasowanych</strong> do poziomów nauczania, ale bez szkolnej sztywności. Jest miejsce na pytania, interpretacje, błędy (bo z nich rodzi się język) i własny styl. Jeśli chcesz uczyć się polskiego <strong>świadomie, skutecznie i z sensem</strong> — to tutaj.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══ SEKCJA 3: CO TO ZNACZY DLA CIEBIE – wyśrodkowane ══ -->
+<section class="section" style="background:#fff;">
+  <div class="benefits-section">
+    <h2>Co to znaczy dla Ciebie?</h2>
+    <p class="sub">Ucząc się ze mną:</p>
+    <ul class="benefits-list">
+      <li>mówisz po polsku <strong>pewniej i swobodniej</strong> już od pierwszych zajęć;</li>
+      <li>uczysz się języka, który <strong>naprawdę działa w codziennych sytuacjach</strong>;</li>
+      <li>masz <strong>jasny plan nauki</strong> i dokładnie wiesz, nad czym pracujesz;</li>
+      <li>uczysz się <strong>bez presji i stresu</strong>, w bezpiecznej atmosferze;</li>
+      <li>otrzymujesz materiały <strong>dopasowane do Twojego poziomu i celu</strong>;</li>
+      <li>przygotujesz się skutecznie do <strong>życia w Polsce</strong>, wizyt u lekarza oraz rozmów urzędowych;</li>
+      <li>przygotujesz się do <strong>egzaminów certyfikatowych</strong>, TELC, rozmów na Kartę Polaka;</li>
+      <li>oszczędzasz czas — uczysz się <strong>konkretnie i bez chaosu</strong>.</li>
+    </ul>
+    <p class="benefits-note">To nauka języka polskiego dopasowana do <strong>Twojego</strong> życia, celów i tempa.</p>
+    <a href="oferta.html" class="btn">Oferta</a>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══ SEKCJA 4: JAK PRACUJEMY – obraz z lewej, lista z prawej ══ -->
+<section class="section" style="background:var(--blue-bg);">
+  <div class="how-grid">
+    <div>
+      <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=700&q=75" alt="Laptop i słuchawki – nauka online">
+    </div>
+    <div>
+      <h2>Jak pracujemy?</h2>
+      <ul class="check-list">
+        <li>zajęcia odbywają się <strong>online (Zoom)</strong>;</li>
+        <li>lekcja próbna (30 minut) jest <strong>bezpłatna</strong> i niezobowiązująca;</li>
+        <li>lekcje <strong>indywidualne lub w małych grupach</strong>;</li>
+        <li>program jest dopasowany do <strong>Twojego celu, poziomu i tempa</strong>;</li>
+        <li>jasna struktura + przyjazna atmosfera.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══ SEKCJA 5: JEŚLI CHCESZ SPRAWDZIĆ ══ -->
+<section class="section" style="background:#fff;">
+  <div class="try-section">
+    <h2>Jeśli chcesz sprawdzić, czy to podejście jest dla Ciebie</h2>
+    <p>Zacznij od <strong>bezpłatnej lekcji próbnej</strong> — to spokojny sposób, żeby się poznać i zobaczyć, jak pracujemy.</p>
+    <a href="kontakt.html" class="btn">Chcę spróbować</a>
+    <p class="try-tagline">bez zobowiązań · rozmowa · plan dalszej nauki</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+    <a href="regulamin.html">Regulamin</a>
+  </div>
+  <div>© 2026 | IB Polish | Wszystkie prawa zastrzeżone</div>
+</footer>
+<script src="nav.js"></script>
+
+
+
+</body>
+</html>

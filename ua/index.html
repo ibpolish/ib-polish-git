@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IB Polish – Польська, яка має сенс</title>
+  <link rel="icon" href="../logo.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    h1, h2, h3 { color: #5b9ab5 !important; }
+    .btn { background: #5b9ab5 !important; }
+    .btn:hover { background: #7ab5cc !important; }
+    .hero-section { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; max-width: 1100px; margin: 0 auto; padding: 5rem 2rem; }
+    .hero-section h1 { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 1.5rem; }
+    .hero-section p { font-size: 1rem; line-height: 1.8; text-align: justify; }
+    .hero-section img { width: 100%; border-radius: 16px; box-shadow: 0 12px 48px rgba(91,154,181,0.2); }
+    @media (max-width: 768px) { .hero-section { grid-template-columns: 1fr; } .hero-section .hero-img-col { order: -1; } .hero-section p { text-align: left; } }
+    .offer-band { background: var(--blue); color: #fff; padding: 4rem 2rem; }
+    .offer-band-inner { max-width: 900px; margin: 0 auto; }
+    .offer-band p { font-size: 1rem; line-height: 1.8; text-align: justify; margin-bottom: 1.5rem; }
+    .offer-band ul { list-style: none; margin-bottom: 2.5rem; }
+    .offer-band ul li { padding: 0.35rem 0 0.35rem 1.8rem; position: relative; font-size: 1rem; }
+    .offer-band ul li::before { content: '›'; position: absolute; left: 0; font-weight: 700; font-size: 1.2rem; line-height: 1.5; color: rgba(255,255,255,0.8); }
+    .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; text-align: center; padding: 2.5rem 0; border-top: 1px solid rgba(255,255,255,0.3); border-bottom: 1px solid rgba(255,255,255,0.3); margin-bottom: 2.5rem; }
+    .stat-num { font-family: 'Lora', serif; font-size: 2.8rem; font-weight: 700; color: #fff; line-height: 1; margin-bottom: 0.5rem; }
+    .stat-label { font-size: 0.88rem; color: rgba(255,255,255,0.85); line-height: 1.4; }
+    @media (max-width: 560px) { .stats-row { grid-template-columns: 1fr; gap: 1.5rem; } }
+    .offer-band .btn-white { display: inline-block; background: #fff; color: var(--blue) !important; padding: 0.85rem 2.5rem; border-radius: 8px; font-weight: 700; font-size: 1rem; text-decoration: none !important; transition: opacity 0.2s, transform 0.15s; }
+    .offer-band .btn-white:hover { opacity: 0.9; transform: translateY(-1px); }
+    .offer-band-cta { text-align: center; }
+    .opinions-section { padding: 5rem 2rem; background: #fff; }
+    .opinions-section h2 { text-align: center; margin-bottom: 3rem; }
+    .opinions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; max-width: 1100px; margin: 0 auto 3rem; }
+    .opinion-card { text-align: center; }
+    .opinion-avatar { width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--border); margin: 0 auto 1.2rem; display: flex; align-items: center; justify-content: center; color: var(--blue-light); }
+    .opinion-avatar svg { width: 32px; height: 32px; }
+    .opinion-card p { font-size: 0.93rem; line-height: 1.75; color: var(--text); margin-bottom: 1rem; }
+    .opinion-author { font-family: 'Lora', serif; color: var(--blue); font-size: 1.05rem; font-style: italic; }
+    .opinions-cta { text-align: center; }
+    @media (max-width: 768px) { .opinions-grid { grid-template-columns: 1fr; max-width: 500px; } }
+    .cta-dark { background: #1a2b35; background-image: url('https://images.unsplash.com/photo-1555431189-0fabf2667795?w=1400&q=60'); background-size: cover; background-position: center; position: relative; text-align: center; padding: 6rem 2rem; }
+    .cta-dark::before { content: ''; position: absolute; inset: 0; background: rgba(20, 35, 45, 0.82); }
+    .cta-dark-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+    .cta-dark h2 { color: var(--blue-pale); font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 1.2rem; }
+    .cta-dark p { color: rgba(255,255,255,0.85); font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.7; }
+    .cta-dark p strong { color: #fff; }
+    .cta-tagline-dark { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 1.2rem; letter-spacing: 0.05em; }
+    footer { padding: 1.8rem 2rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--text-light); flex-wrap: wrap; gap: 0.5rem; }
+    footer a { color: var(--text-light); }
+    footer a:hover { color: var(--blue); }
+    .footer-links { display: flex; gap: 2rem; }
+  
+/* Language switcher dropdown */
+.lang-switch-wrapper { position: relative; list-style: none; }
+.lang-switch-btn {
+  background: none; border: 1px solid var(--border);
+  border-radius: 6px; padding: 0.3rem 0.7rem;
+  font-family: 'Nunito', sans-serif; font-size: 0.88rem;
+  font-weight: 600; color: var(--blue); cursor: pointer;
+  white-space: nowrap; transition: background 0.2s;
+}
+.lang-switch-btn:hover { background: var(--blue-bg); }
+.lang-dropdown {
+  display: none; position: absolute; right: 0; top: 110%;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 8px; min-width: 150px; z-index: 1000;
+  box-shadow: 0 4px 16px rgba(91,154,181,0.12);
+  padding: 0.3rem 0;
+}
+.lang-dropdown.open { display: block; }
+.lang-dropdown a {
+  display: block; padding: 0.5rem 1rem;
+  font-size: 0.88rem; color: var(--text);
+  text-decoration: none; transition: background 0.15s;
+}
+.lang-dropdown a:hover { background: var(--blue-bg); color: var(--blue); }
+.lang-dropdown a.lang-active { font-weight: 700; color: var(--blue); }
+
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="../logo.jpg" alt="IB Polish logo">
+    <span class="nav-logo-text">IB Polish</span>
+  </a>
+  <button class="hamburger" aria-label="Меню"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Головна</a></li>
+    <li><a href="o-mnie.html">Про мене</a></li>
+    <li class="nav-dropdown"><a href="oferta.html">Пропозиція</a>
+      <div class="dropdown-menu">
+        <a href="zajecia-indywidualne.html">Індивідуальні уроки</a>
+        <a href="zajecia-mini-grupy.html">Заняття в міні-групах</a>
+        <a href="przygotowanie-do-egzaminu.html">Підготовка до іспиту</a>
+      </div>
+    </li>
+    <li><a href="opinie.html">Відгуки</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="test.html">Мовний тест</a></li>
+    <li><a href="kontakt.html" class="btn" style="padding:0.45rem 1.2rem;font-size:0.88rem;">Контакт</a></li>
+    <li class="lang-switch-wrapper">
+      <button class="lang-switch-btn" id="lang-switch-btn">🇺🇦 <span>UA</span> ▾</button>
+      <div class="lang-dropdown" id="lang-dropdown">
+        <a href="../index.html">🇵🇱 PL</a>
+        <a href="../ru/index.html">🇷🇺 RU</a>
+        <a href="../by/index.html">🇧🇾 BY</a>
+        <a href="../ua/index.html" class="lang-active">🇺🇦 UA</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<section style="background:#fff;">
+  <div class="hero-section">
+    <div class="hero-text-col">
+      <h1>Польська, яка працює</h1>
+      <p>В IB Polish я пропоную індивідуальні та групові онлайн-заняття з польської мови для <strong>дорослих</strong>, щоб допомогти Своїм учням досягти їхньої мети – <strong>знання</strong> <strong>граматики</strong> польської мови, <strong>вільного</strong> <strong>спілкування</strong> польською, а також високих результатів на державних іспитах. Я викладаю структуровано, але гнучко — з акцентом на <strong>розмовну</strong> <strong>мову</strong>, <strong>розуміння</strong> і <strong>реальне</strong> <strong>використання</strong> мови. Кожне заняття адаптоване до рівня, темпу і мети учня — без тиску і випадкових тим.</p>
+      <p>Польська мова повинна бути інструментом, який працює — у житті, на роботі та на іспиті. Ви вчитеся з <strong>чітким планом</strong> і <strong>реальною метою</strong> — будь то вільне спілкування по-польськи, Підготовка до іспиту або впевненість в повсякденних розмовах. Кожне заняття адаптоване до вашого рівня і потреб, а матеріали підготовлені так, щоб навчання було ефективним і приємним. Завдяки індивідуальному підходу ви швидше бачите результати і точно знаєте, над чим працюєте.</p>
+      <a href="o-mnie.html" class="btn" style="margin-top:0.5rem;">Про мене</a>
+    </div>
+    <div class="hero-img-col">
+      <img src="../img_teacher.png" alt="Изабела – преподаватель польского языка">
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="offer-band">
+  <div class="offer-band-inner">
+    <p>Я пропоную <strong>індивідуальні</strong> та <strong>групові</strong> онлайн-заняття з польської мови як іноземної. Завдяки моїм знанням, досвіду та ретельно підібраним матеріалам я гарантую <strong>ефективне</strong> вивчення мови в дружній атмосфері. Я спеціалізуюся на заняттях для дорослих, адаптованих до їх <strong>потреб</strong> та <strong>рівня</strong> <strong>підготовки</strong>.</p>
+    <ul>
+      <li>індивідуальні онлайн-уроки;</li>
+      <li>онлайн-уроки в міні-групах;</li>
+      <li>підготовка до сертифікаційних іспитів, TELC, а також співбесід на Карту поляка;</li>
+      <li>використання авторських навчальних матеріалів.</li>
+    </ul>
+    <div class="stats-row">
+      <div><div class="stat-num">400+</div><div class="stat-label">задоволених учнів</div></div>
+      <div><div class="stat-num">87,7%</div><div class="stat-label">середній результат на сертифікаційних іспитах</div></div>
+      <div><div class="stat-num">3000+</div><div class="stat-label">проведених уроків</div></div>
+    </div>
+    <div class="offer-band-cta">
+      <a href="oferta.html" class="btn-white">Пропозиція</a>
+    </div>
+  </div>
+</section>
+
+<section class="opinions-section">
+  <h2>Відгуки</h2>
+  <div class="opinions-grid">
+    <div class="opinion-card">
+      <div class="opinion-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+      <p>Здравствуйте! Я в восторге! Крутые курсы, классный учебник, потрясающая Изабелла! Добрая, веселая, очень любит свою страну, из-за чего очень много интересного нам рассказывала про Польшу. Я довольна на 100%!</p>
+      <div class="opinion-author">~Женя</div>
+    </div>
+    <div class="opinion-card">
+      <div class="opinion-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+      <p>Изочка, привет!) Получила результаты, экзамен сдан! Спасибо тебе огромное за подготовку ❤️ Słuchanie – 93%, czytanie – 100%, pisanie – 88%, gramatyka – 92%, mówienie – 90%. Надумаю сдавать выше — я знаю к кому!</p>
+      <div class="opinion-author">~Настя</div>
+    </div>
+    <div class="opinion-card">
+      <div class="opinion-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+      <p>Иза не похожа на всех остальных преподавателей, видно как она горит этим, чувствуется её безудержная энергия и страсть к преподаванию! Никакой лести — такие мои мысли.</p>
+      <div class="opinion-author">~Олег</div>
+    </div>
+  </div>
+  <div class="opinions-cta">
+    <a href="opinie.html" class="btn">Всі відгуки</a>
+  </div>
+</section>
+
+<section class="cta-dark">
+  <div class="cta-dark-inner">
+    <h2>Не знаєте, з чого почати?</h2>
+    <p>Почніть з <strong>безкоштовного пробного уроку</strong> - це найпростіший перший крок. Або <strong>напишіть</strong> <strong>мені</strong> — допоможу вибрати кращий варіант для старту.</p>
+    <a href="kontakt.html" class="btn">Зробити перший крок</a>
+    <p class="cta-tagline-dark">безкоштовно · онлайн · 30 хвилин · без зобов'язань</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="../polityka-prywatnosci.html">Політика конфіденційності</a>
+    <a href="../regulamin.html">Регламент</a>
+  </div>
+  <div>© 2026 | IB Polish | Всі права захищені</div>
+</footer>
+<script src="../nav.js"></script>
+
+
+
+</body>
+</html>

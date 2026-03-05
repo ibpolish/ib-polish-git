@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Обо мне – IB Polish</title>
+  <link rel="icon" href="../logo.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    h1, h2, h3 { color: #5b9ab5 !important; }
+    .btn { background: #5b9ab5 !important; }
+    .btn:hover { background: #7ab5cc !important; }
+    .about-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; max-width: 1100px; margin: 0 auto; padding: 5rem 2rem; }
+    .about-hero h1 { margin-bottom: 1.5rem; }
+    .about-hero p { text-align: justify; font-size: 1rem; line-height: 1.8; }
+    .about-hero img { width: 100%; border-radius: 16px; box-shadow: 0 12px 48px rgba(91,154,181,0.2); }
+    @media (max-width: 768px) { .about-hero { grid-template-columns: 1fr; } .about-hero .img-col { order: -1; } .about-hero p { text-align: left; } }
+    .two-col-centered { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; max-width: 1100px; margin: 0 auto; }
+    .two-col-centered h2 { text-align: center; margin-bottom: 1.2rem; }
+    .two-col-centered p { text-align: justify; font-size: 1rem; line-height: 1.8; }
+    @media (max-width: 768px) { .two-col-centered { grid-template-columns: 1fr; } }
+    .benefits-section { max-width: 780px; margin: 0 auto; text-align: center; }
+    .benefits-section h2 { margin-bottom: 0.4rem; }
+    .benefits-section .sub { color: var(--text-light); margin-bottom: 1.8rem; font-weight: 600; }
+    .benefits-list { list-style: none; text-align: center; }
+    .benefits-list li { padding: 0.4rem 0 0.4rem 1.6rem; position: relative; font-size: 1rem; line-height: 1.7; display: inline-block; width: 100%; text-align: center; }
+    .benefits-list li::before { content: '›'; position: absolute; left: 0; color: var(--blue); font-weight: 700; font-size: 1.2rem; line-height: 1.5; }
+    .benefits-note { margin: 1.5rem 0 2rem; font-size: 1rem; }
+    .how-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
+    .how-grid img { width: 100%; border-radius: 16px; box-shadow: 0 8px 32px rgba(91,154,181,0.16); }
+    .how-grid h2 { margin-bottom: 1.2rem; }
+    .how-grid .check-list li { font-size: 1rem; line-height: 1.75; }
+    @media (max-width: 768px) { .how-grid { grid-template-columns: 1fr; } }
+    .try-section { text-align: center; }
+    .try-section h2 { margin-bottom: 1rem; font-size: clamp(1.4rem, 3vw, 2rem); }
+    .try-section p { max-width: 620px; margin: 0 auto 2rem; color: var(--text); font-size: 1rem; }
+    .try-tagline { font-size: 0.85rem; color: var(--text-light); margin-top: 1rem; letter-spacing: 0.03em; }
+    footer { padding: 1.8rem 2rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--text-light); flex-wrap: wrap; gap: 0.5rem; }
+    footer a { color: var(--text-light); }
+    footer a:hover { color: var(--blue); }
+    .footer-links { display: flex; gap: 2rem; }
+  
+/* Language switcher dropdown */
+.lang-switch-wrapper { position: relative; list-style: none; }
+.lang-switch-btn {
+  background: none; border: 1px solid var(--border);
+  border-radius: 6px; padding: 0.3rem 0.7rem;
+  font-family: 'Nunito', sans-serif; font-size: 0.88rem;
+  font-weight: 600; color: var(--blue); cursor: pointer;
+  white-space: nowrap; transition: background 0.2s;
+}
+.lang-switch-btn:hover { background: var(--blue-bg); }
+.lang-dropdown {
+  display: none; position: absolute; right: 0; top: 110%;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 8px; min-width: 150px; z-index: 1000;
+  box-shadow: 0 4px 16px rgba(91,154,181,0.12);
+  padding: 0.3rem 0;
+}
+.lang-dropdown.open { display: block; }
+.lang-dropdown a {
+  display: block; padding: 0.5rem 1rem;
+  font-size: 0.88rem; color: var(--text);
+  text-decoration: none; transition: background 0.15s;
+}
+.lang-dropdown a:hover { background: var(--blue-bg); color: var(--blue); }
+.lang-dropdown a.lang-active { font-weight: 700; color: var(--blue); }
+
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="../logo.jpg" alt="IB Polish logo">
+    <span class="nav-logo-text">IB Polish</span>
+  </a>
+  <button class="hamburger" aria-label="Меню"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
+    <li><a href="index.html">Главная</a></li>
+    <li><a href="o-mnie.html" class="active">Обо мне</a></li>
+    <li class="nav-dropdown"><a href="oferta.html">Предложение</a>
+      <div class="dropdown-menu">
+        <a href="zajecia-indywidualne.html">Индивидуальные занятия</a>
+        <a href="zajecia-mini-grupy.html">Занятия в мини-группах</a>
+        <a href="przygotowanie-do-egzaminu.html">Подготовка к экзамену</a>
+      </div>
+    </li>
+    <li><a href="opinie.html">Отзывы</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="test.html">Языковой тест</a></li>
+    <li><a href="kontakt.html" class="btn" style="padding:0.45rem 1.2rem;font-size:0.88rem;">Контакт</a></li>
+    <li class="lang-switch-wrapper">
+      <button class="lang-switch-btn" id="lang-switch-btn">🇷🇺 <span>RU</span> ▾</button>
+      <div class="lang-dropdown" id="lang-dropdown">
+        <a href="../o-mnie.html">🇵🇱 PL</a>
+        <a href="../ru/o-mnie.html" class="lang-active">🇷🇺 RU</a>
+        <a href="../by/o-mnie.html">🇧🇾 BY</a>
+        <a href="../ua/o-mnie.html">🇺🇦 UA</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<section style="background:#fff;">
+  <div class="about-hero">
+    <div class="text-col">
+      <h1>Обо мне</h1>
+      <p><em><strong>Привет!</strong></em></p>
+      <p>Меня зовут Изабела, я <strong>носитель польского языка</strong> и <strong>преподаватель польского как иностранного</strong>. Я также являюсь <strong>экзаменатором на государственных экзаменах по польскому как иностранному</strong>.</p>
+      <p>Я окончила бакалавриат и магистратуру по специальности «<strong>русская филология</strong>» в Ягеллонском университете в Кракове, прошла <strong>двухлетний педагогический курс</strong> Педагогического института Ягеллонского университета, а также аспирантуру в Университете Марии Кюри-Склодовской в Люблине по специальности «<strong>преподавание польского как иностранного</strong>».</p>
+      <p>Я обучаю польскому языку иностранцев уже <strong>более пяти лет</strong>. Работала в языковых школах в Польше и за рубежом (Украина, Беларусь, Словакия). Постоянно <strong>совершенствую свои знания</strong>, участвуя в курсах и тренингах по преподаванию польского. Благодаря этому мои ученики учатся <strong>структурированно</strong>, без хаоса и стресса, но с реальными <strong>результатами</strong> в разговорной речи.</p>
+      <p>Я создаю авторские материалы, которые помогают в изучении польского языка. Веду онлайн-занятия <strong>индивидуально</strong> и в <strong>мини-группах</strong> для <strong>взрослых</strong>, которые хотят свободно и уверенно общаться по-польски.</p>
+      <p>Моё девиз — «<strong>говори лучше, чем поляк</strong>» — то есть говори осознанно, естественно и без страха.</p>
+    </div>
+    <div class="img-col">
+      <img src="../img_teacher.png" alt="Изабела – преподаватель IB Polish">
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section" style="background:var(--blue-bg);">
+  <div class="two-col-centered">
+    <div>
+      <h2>Профессиональное обучение польскому</h2>
+      <p>Мой подход основан на подборе индивидуальных методов для каждого ученика и адаптации программы обучения к его потребностям и целям. Я также стараюсь создавать <strong>дружескую и мотивирующую атмосферу</strong> на занятиях, чтобы мои ученики могли <strong>свободно</strong> изучать польский язык, а затем использовать его в повседневной жизни. Я специализируюсь на работе с людьми, изучающими язык естественным путём — через разговор, а также на подготовке к <strong>сертификационным экзаменам по польскому как иностранному</strong> (уровни B1–B2), <strong>экзаменам TELC</strong>, а также к <strong>собеседованиям на Карту поляка</strong>.</p>
+    </div>
+    <div>
+      <h2>Почему стоит учить польский со мной?</h2>
+      <p>Потому что польский язык — это гораздо больше, чем грамматика. Это не просто зубрёжка слов, а <strong>вхождение в новый мир</strong>. На наших занятиях я стараюсь создать пространство, где мы сочетаем <strong>практическое общение с мышлением, культурой и аутентичным языком</strong>. Вы учите польский так, как его реально используют — в разговорах, текстах, аргументах и эмоциях. Мы работаем с материалами, <strong>подобранными</strong> к уровням обучения, но без школьной скованности. Есть место для вопросов, интерпретаций, ошибок (ведь из них рождается язык) и собственного стиля.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section" style="background:#fff;">
+  <div class="benefits-section">
+    <h2>Что это значит для вас?</h2>
+    <p class="sub">Обучаясь со мной, вы:</p>
+    <ul class="benefits-list">
+      <li>говорите по-польски <strong>увереннее и свободнее</strong> уже с первых занятий;</li>
+      <li>изучаете язык, который <strong>реально работает в повседневных ситуациях</strong>;</li>
+      <li>имеете <strong>чёткий план обучения</strong> и точно знаете, над чем работаете;</li>
+      <li>учитесь <strong>без давления и стресса</strong>, в безопасной атмосфере;</li>
+      <li>получаете материалы, <strong>адаптированные к вашему уровню и цели</strong>;</li>
+      <li>готовитесь к <strong>жизни в Польше</strong>, визитам к врачу и официальным разговорам;</li>
+      <li>готовитесь к <strong>сертификационным экзаменам</strong>, TELC, собеседованиям на Карту поляка;</li>
+      <li>экономите время — учитесь <strong>конкретно и без хаоса</strong>.</li>
+    </ul>
+    <p class="benefits-note">Это обучение польскому, адаптированное к <strong>вашей</strong> жизни, целям и темпу.</p>
+    <a href="oferta.html" class="btn">Предложение</a>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section" style="background:var(--blue-bg);">
+  <div class="how-grid">
+    <div>
+      <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=700&q=75" alt="Ноутбук и наушники – онлайн-обучение">
+    </div>
+    <div>
+      <h2>Как мы работаем?</h2>
+      <ul class="check-list">
+        <li>занятия проходят <strong>онлайн (Zoom)</strong>;</li>
+        <li>пробный урок (30 минут) — <strong>бесплатный</strong> и без обязательств;</li>
+        <li>уроки <strong>индивидуальные или в небольших группах</strong>;</li>
+        <li>программа адаптирована к <strong>вашей цели, уровню и темпу</strong>;</li>
+        <li>чёткая структура + дружеская атмосфера.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section" style="background:#fff;">
+  <div class="try-section">
+    <h2>Хотите проверить, подходит ли вам этот подход?</h2>
+    <p>Начните с <strong>бесплатного пробного урока</strong> — это спокойный способ познакомиться и увидеть, как мы работаем.</p>
+    <a href="kontakt.html" class="btn">Хочу попробовать</a>
+    <p class="try-tagline">без обязательств · разговор · план дальнейшего обучения</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="../polityka-prywatnosci.html">Политика конфиденциальности</a>
+    <a href="../regulamin.html">Регламент</a>
+  </div>
+  <div>© 2026 | IB Polish | Все права защищены</div>
+</footer>
+<script src="../nav.js"></script>
+
+
+
+</body>
+</html>

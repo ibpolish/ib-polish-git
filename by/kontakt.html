@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="be">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кантакт – IB Polish</title>
+  <link rel="icon" href="../logo.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    h1, h2, h3 { color: #5b9ab5 !important; }
+    .btn { background: #5b9ab5 !important; }
+    .btn:hover { background: #7ab5cc !important; }
+    footer { padding: 1.8rem 2rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--text-light); flex-wrap: wrap; gap: 0.5rem; }
+    footer a { color: var(--text-light); }
+    footer a:hover { color: var(--blue); }
+    .footer-links { display: flex; gap: 2rem; }
+  
+/* Language switcher dropdown */
+.lang-switch-wrapper { position: relative; list-style: none; }
+.lang-switch-btn {
+  background: none; border: 1px solid var(--border);
+  border-radius: 6px; padding: 0.3rem 0.7rem;
+  font-family: 'Nunito', sans-serif; font-size: 0.88rem;
+  font-weight: 600; color: var(--blue); cursor: pointer;
+  white-space: nowrap; transition: background 0.2s;
+}
+.lang-switch-btn:hover { background: var(--blue-bg); }
+.lang-dropdown {
+  display: none; position: absolute; right: 0; top: 110%;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 8px; min-width: 150px; z-index: 1000;
+  box-shadow: 0 4px 16px rgba(91,154,181,0.12);
+  padding: 0.3rem 0;
+}
+.lang-dropdown.open { display: block; }
+.lang-dropdown a {
+  display: block; padding: 0.5rem 1rem;
+  font-size: 0.88rem; color: var(--text);
+  text-decoration: none; transition: background 0.15s;
+}
+.lang-dropdown a:hover { background: var(--blue-bg); color: var(--blue); }
+.lang-dropdown a.lang-active { font-weight: 700; color: var(--blue); }
+
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="../logo.jpg" alt="IB Polish logo">
+    <span class="nav-logo-text">IB Polish</span>
+  </a>
+  <button class="hamburger" aria-label="Меню"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
+    <li><a href="index.html">Галоўная</a></li>
+    <li><a href="o-mnie.html">Пра мяне</a></li>
+    <li class="nav-dropdown"><a href="oferta.html">Прапанова</a>
+      <div class="dropdown-menu">
+        <a href="zajecia-indywidualne.html">Індывідуальныя ўрокі</a>
+        <a href="zajecia-mini-grupy.html">Заняткі ў міні-групах</a>
+        <a href="przygotowanie-do-egzaminu.html">Падрыхтоўка да экзамену</a>
+      </div>
+    </li>
+    <li><a href="opinie.html">Водгукі</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="test.html">Моўны тэст</a></li>
+    <li><a href="kontakt.html" class="btn" style="padding:0.45rem 1.2rem;font-size:0.88rem;">Кантакт</a></li>
+    <li class="lang-switch-wrapper">
+      <button class="lang-switch-btn" id="lang-switch-btn">🇧🇾 <span>BY</span> ▾</button>
+      <div class="lang-dropdown" id="lang-dropdown">
+        <a href="../kontakt.html">🇵🇱 PL</a>
+        <a href="../ru/kontakt.html">🇷🇺 RU</a>
+        <a href="../by/kontakt.html" class="lang-active">🇧🇾 BY</a>
+        <a href="../ua/kontakt.html">🇺🇦 UA</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<section class="section section-white">
+  <div class="container">
+    <h1 class="section-title">Кантакт</h1>
+    <p class="section-sub">Я вяду заняткі <strong>100% анлайн</strong> –вы вучыцеся там, дзе вам зручна.</p>
+
+    <div class="contact-grid" style="margin-top:3rem;">
+      <div>
+        <h2 style="font-size:1.6rem;color:var(--blue);margin-bottom:1rem;">Запішыцеся на пробны ўрок!</h2>
+        <p><strong>Выберыце</strong> <strong>час у календары</strong> і сустрэнемся анлайн — без абавязацельстваў. <strong>Спакойна</strong>, але <strong>канкрэтна</strong>.</p>
+        <div style="margin-top:2rem;">
+          <div class="activenow-form-container activenow-trial-lesson-signup-panel-container">
+            <center><img src="https://www.activenow.io/assets/ripple.gif" width="100px"></center>
+            <script async src="https://app.activenow.io/external/trial_lesson_signup_panel/load_by_js?code=wSO9b3Qo5mtoA2q7&school_id=13220&signup_form_id=169175"></script>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 style="font-size:1.6rem;color:var(--blue);margin-bottom:0.5rem;"><strong>Напісаць</strong> <strong>паведамленне</strong></h2>
+        <p>Не знайшлі падыходнага часу? Ёсць пытанні ці нестандартная мэта?<br><strong>Напішыце мне</strong> — разам знойдзем лепшае рашэнне.</p>
+        <form id="ru-contact-form" novalidate style="margin-top:1.5rem;">
+          <div class="form-group">
+            <label for="ru-name">Ваша імя *</label>
+            <input type="text" id="ru-name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="ru-email">E-mail *</label>
+            <input type="email" id="ru-email" name="email" required placeholder="@">
+          </div>
+          <div class="form-group">
+            <label for="ru-telegram">Нік у <strong>Telegram</strong></label>
+            <input type="text" id="ru-telegram" name="telegram">
+          </div>
+          <div class="form-group">
+            <label for="ru-zajecia">Заняткі, якія мяне цікавяць:</label>
+            <select id="ru-zajecia" name="zajecia">
+              <option>Індывідуальныя ўрокі</option>
+              <option>Заняткі ў міні-групах</option>
+              <option>Падрыхтоўка да экзамену</option>
+              <option>Другое / есть вопрос</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Мой узровень мовы</label>
+            <div class="radio-group">
+              <label><input type="radio" name="poziom" value="A0"> A0</label>
+              <label><input type="radio" name="poziom" value="A1"> A1</label>
+              <label><input type="radio" name="poziom" value="A2"> A2</label>
+              <label><input type="radio" name="poziom" value="B1"> B1</label>
+              <label><input type="radio" name="poziom" value="B2"> B2</label>
+              <label><input type="radio" name="poziom" value="не ведаю"> не ведаю</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="ru-msg">Паведамленне</label>
+            <textarea id="ru-msg" name="message"></textarea>
+          </div>
+          <div class="gdpr-check">
+            <input type="checkbox" id="ru-gdpr" name="gdpr">
+            <label for="ru-gdpr">Я даю согласие на обработку моих персональных данных для ответа на запрос и контакта по поводу занятий. Кантактные данные используются исключительно для ответа на запрос. Я ознакомился/-ась с <a href="polityka-prywatnosci.html">Политикой конфиденциальности</a>.</label>
+          </div>
+          <div class="gdpr-error" style="display:none;color:red;font-size:0.82rem;margin-bottom:0.8rem;">Адзначце згоду на апрацоўку дадзеных.</div>
+          <button type="submit" class="btn" id="ru-submit" disabled>Напісаць мне</button>
+          <p class="form-note" style="margin-top:0.8rem;font-size:0.88rem;color:var(--text-light);">На паведамленні адказваю звычайна на працягу 24 гадзін.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="border-top:1px solid var(--border);padding:3rem 2rem;">
+  <div class="container">
+    <div class="contact-info-strip">
+      <div class="ci-item">
+        <div class="ci-top">
+          <svg viewBox="0 0 24 24" stroke-width="1.5" fill="none"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke="var(--blue)" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h4><strong>WhatsApp</strong></h4>
+        </div>
+        <p>💬 <a href="https://wa.me/511931920" target="_blank" rel="noopener"><strong><strong>Напісаць</strong> <strong>паведамленне</strong></strong></a></p>
+      </div>
+      <div class="ci-item">
+        <div class="ci-top">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="3"/><circle cx="12" cy="17" r="1" fill="var(--blue)" stroke="none"/></svg>
+          <h4><strong>Telegram</strong></h4>
+        </div>
+        <p>💬 <a href="https://t.me/egoregina" target="_blank" rel="noopener"><strong><strong>Напісаць</strong> <strong>паведамленне</strong></strong></a></p>
+      </div>
+      <div class="ci-item">
+        <div class="ci-top">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          <h4>Анлайн-заняткі <strong>Zoom)</strong></h4>
+        </div>
+        <p>🌐 Вучыцеся з <strong>любой</strong> кропкі свету</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="../polityka-prywatnosci.html">Палітыка прыватнасці</a>
+    <a href="../regulamin.html">Рэгламент</a>
+  </div>
+  <div>© 2026 | IB Polish | Усе правы абаронены</div>
+</footer>
+<script src="../nav.js"></script>
+<script>setupContactForm('ru-contact-form', 'https://formspree.io/f/mpqjynbg');</script>
+
+
+
+</body>
+</html>

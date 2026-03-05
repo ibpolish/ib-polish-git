@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Przygotowanie do egzaminu – IB Polish</title>
+  <link rel="icon" href="logo.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* wymuszony kolor nagłówków */
+    h1, h2, h3 { color: #5b9ab5 !important; }
+    .btn { background: #5b9ab5 !important; }
+    .btn:hover { background: #7ab5cc !important; }
+
+    .eg-intro { max-width: 860px; margin: 0 auto; text-align: center; padding: 4rem 2rem 3rem; }
+    .eg-intro h1 { margin-bottom: 1.2rem; }
+    .eg-intro p { font-size: 1rem; line-height: 1.8; }
+
+    .eg-main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .eg-main .list-col h2 { font-size: 1.25rem; color: var(--blue); margin-bottom: 0.8rem; }
+    .eg-main .list-col .check-list { margin-bottom: 1.2rem; }
+    .eg-main .list-col .check-list li { font-size: 0.97rem; line-height: 1.7; }
+    .eg-main .list-col hr { border: none; border-top: 1px solid var(--border); margin: 1.2rem 0; }
+    .eg-main .img-col img { width: 100%; border-radius: 16px; box-shadow: 0 8px 32px rgba(91,154,181,0.18); }
+    .price-box { background: var(--blue-bg); border-radius: var(--radius); padding: 1.2rem 1.5rem; margin-top: 1.5rem; text-align: center; border: 1px solid var(--border); }
+    .price-box .label { font-weight: 700; font-size: 0.92rem; margin-bottom: 0.3rem; }
+    .price-box .big { font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 600; color: var(--blue); margin-bottom: 0.4rem; }
+    .price-box .note { font-size: 0.82rem; color: var(--text-light); line-height: 1.5; }
+    @media (max-width: 768px) {
+      .eg-main { grid-template-columns: 1fr; }
+      .eg-main .img-col { order: -1; }
+    }
+
+    /* features */
+    .features-eg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; max-width: 1100px; margin: 0 auto; }
+    @media (max-width: 768px) { .features-eg { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .features-eg { grid-template-columns: 1fr; } }
+    .fi { display: flex; flex-direction: column; text-align: center; align-items: center; }
+    .fi-top { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.7rem; justify-content: center; }
+    .fi-emoji { font-size: 1.8rem; color: var(--blue); }
+    .fi-top h3 { font-size: 1rem; color: var(--blue); font-family: 'Nunito', sans-serif; font-weight: 700; margin: 0; }
+    .fi p { font-size: 0.92rem; color: var(--text); line-height: 1.7; text-align: center; }
+
+    /* cennik */
+    .cennik-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1100px; margin: 0 auto; align-items: start; }
+    @media (max-width: 768px) { .cennik-grid { grid-template-columns: 1fr; } }
+    .cennik-grid h3 { font-size: 1.3rem; text-align: center; margin-bottom: 0.4rem; color: var(--blue); font-family: 'Nunito', sans-serif; font-weight: 700; }
+    .cennik-grid .sub { text-align: center; font-size: 0.88rem; margin-bottom: 1.5rem; }
+
+    .price-item { padding: 1rem 0; border-bottom: 1px solid var(--border); }
+    .price-item:last-of-type { border-bottom: none; }
+    .price-item-top { display: flex; justify-content: space-between; align-items: baseline; }
+    .price-item-top .name { font-size: 0.95rem; color: var(--blue); font-weight: 600; flex: 1; padding-right: 1rem; }
+    .price-item-top .amt { font-family: 'Lora', serif; font-size: 1.3rem; color: var(--blue); font-weight: 600; white-space: nowrap; }
+    .price-item-top .per { font-size: 0.75rem; color: var(--text-light); font-family: 'Nunito', sans-serif; }
+    .price-item .desc { font-size: 0.82rem; color: var(--text-light); margin-top: 0.2rem; }
+    .shorter-note { background: var(--blue-bg); border-radius: 8px; padding: 1rem 1.2rem; margin-top: 1.2rem; font-size: 0.9rem; line-height: 1.7; }
+    .price-sub-header { font-size: 0.88rem; color: var(--text-light); font-weight: 700; margin: 1.5rem 0 0.5rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+
+    .pkg-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 0.6rem; overflow: hidden; }
+    .pkg-trigger {
+      width: 100%; background: #fff; border: none; cursor: pointer;
+      padding: 1rem 1.2rem; display: flex; justify-content: space-between; align-items: center;
+      font-family: 'Nunito', sans-serif; font-size: 0.93rem; font-weight: 600;
+      color: var(--blue); text-align: left; transition: background 0.2s;
+    }
+    .pkg-trigger:hover { background: var(--blue-bg); }
+    .pkg-trigger.open { background: var(--blue-bg); }
+    .pkg-icon { font-size: 1.2rem; line-height: 1; transition: transform 0.3s; flex-shrink: 0; }
+    .pkg-trigger.open .pkg-icon { transform: rotate(45deg); }
+    .pkg-body { display: none; background: #f9fbfc; border-top: 1px solid var(--border); padding: 0.8rem 1.2rem; }
+    .pkg-body.open { display: block; }
+    .pkg-row { display: flex; justify-content: space-between; padding: 0.45rem 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+    .pkg-row:last-child { border-bottom: none; }
+    .pkg-popular { font-weight: 700; color: var(--blue); }
+
+    .referral-acc { border: 1px solid var(--border); border-radius: var(--radius); margin-top: 0.6rem; overflow: hidden; }
+    .referral-trigger {
+      width: 100%; background: #fff; border: none; cursor: pointer;
+      padding: 1rem 1.2rem; display: flex; justify-content: space-between; align-items: center;
+      font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 600;
+      color: var(--blue); text-align: left; transition: background 0.2s;
+    }
+    .referral-trigger:hover { background: var(--blue-bg); }
+    .referral-body { display: none; background: #f9fbfc; border-top: 1px solid var(--border); padding: 1rem 1.2rem; font-size: 0.88rem; line-height: 1.7; }
+    .referral-body.open { display: block; }
+
+    .payment-note { max-width: 700px; margin: 2.5rem auto 0; text-align: center; border-top: 1px solid var(--border); padding-top: 2rem; }
+
+    .test-cta { text-align: center; padding: 3.5rem 2rem; }
+    .test-cta h2 { margin-bottom: 1.5rem; }
+
+    .final-cta { text-align: center; }
+    .final-cta h2 { font-size: clamp(1.6rem, 3.5vw, 2.5rem); margin-bottom: 3rem; }
+    .final-cta h2 span { text-decoration: underline; }
+    .final-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1100px; margin: 0 auto; text-align: left; }
+    @media (max-width: 768px) { .final-grid { grid-template-columns: 1fr; } }
+    .final-cal-title { font-size: 1.2rem; color: var(--blue); font-weight: 700; text-align: center; margin-bottom: 0.8rem; }
+    .final-cal-sub { text-align: center; font-size: 0.92rem; margin-bottom: 1.5rem; }
+  
+/* Language switcher dropdown */
+.lang-switch-wrapper { position: relative; list-style: none; }
+.lang-switch-btn {
+  background: none; border: 1px solid var(--border);
+  border-radius: 6px; padding: 0.3rem 0.7rem;
+  font-family: 'Nunito', sans-serif; font-size: 0.88rem;
+  font-weight: 600; color: var(--blue); cursor: pointer;
+  white-space: nowrap; transition: background 0.2s;
+}
+.lang-switch-btn:hover { background: var(--blue-bg); }
+.lang-dropdown {
+  display: none; position: absolute; right: 0; top: 110%;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 8px; min-width: 150px; z-index: 1000;
+  box-shadow: 0 4px 16px rgba(91,154,181,0.12);
+  padding: 0.3rem 0;
+}
+.lang-dropdown.open { display: block; }
+.lang-dropdown a {
+  display: block; padding: 0.5rem 1rem;
+  font-size: 0.88rem; color: var(--text);
+  text-decoration: none; transition: background 0.15s;
+}
+.lang-dropdown a:hover { background: var(--blue-bg); color: var(--blue); }
+.lang-dropdown a.lang-active { font-weight: 700; color: var(--blue); }
+
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="logo.jpg" alt="IB Polish logo">
+    <span class="nav-logo-text">IB Polish</span>
+  </a>
+  <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
+    <li><a href="index.html">Strona główna</a></li>
+    <li><a href="o-mnie.html">O&nbsp;mnie</a></li>
+    <li class="nav-dropdown"><a href="oferta.html" class="active">Oferta</a>
+      <div class="dropdown-menu">
+        <a href="zajecia-indywidualne.html">Zajęcia indywidualne</a>
+        <a href="zajecia-mini-grupy.html">Zajęcia w&nbsp;mini grupach</a>
+        <a href="przygotowanie-do-egzaminu.html">Przygotowanie do egzaminu</a>
+      </div>
+    </li>
+    <li><a href="opinie.html">Opinie</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="test.html">Test językowy</a></li>
+    <li><a href="kontakt.html" class="btn" style="padding:0.45rem 1.2rem;font-size:0.88rem;">Kontakt</a></li>
+    <li class="lang-switch-wrapper">
+      <button class="lang-switch-btn" id="lang-switch-btn">🇵🇱 <span>PL</span> ▾</button>
+      <div class="lang-dropdown" id="lang-dropdown">
+        <a href="przygotowanie-do-egzaminu.html" class="lang-active">🇵🇱 PL</a>
+        <a href="ru/przygotowanie-do-egzaminu.html">🇷🇺 RU</a>
+        <a href="by/przygotowanie-do-egzaminu.html">🇧🇾 BY</a>
+        <a href="ua/przygotowanie-do-egzaminu.html">🇺🇦 UA</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<!-- ══ SEKCJA 1: INTRO ══ -->
+<section style="background:#fff;">
+  <div class="eg-intro">
+    <h1>Przygotowanie do egzaminu</h1>
+    <p>Przygotowanie do egzaminów to zajęcia dla osób, które chcą zdać konkretny egzamin – <strong>świadomie, spokojnie</strong> i <strong>bez chaosu</strong>. Pracujemy na realnych zadaniach egzaminacyjnych, dokładnie omawiamy strukturę egzaminu i&nbsp;uczymy <strong>strategii</strong>, które pomagają zdobywać punkty, a&nbsp;nie tylko „znać język".</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══ SEKCJA 2: LISTA PO LEWEJ, ZDJĘCIE PO PRAWEJ ══ -->
+<section class="section" style="background:#fff;">
+  <div class="eg-main">
+    <div class="list-col">
+      <h2>Te zajęcia są dla Ciebie, jeśli:</h2>
+      <ul class="check-list">
+        <li>stres egzaminacyjny blokuje Ci mówienie i&nbsp;chcesz się go pozbyć;</li>
+        <li>potrzebujesz <strong>konkretu, struktury i&nbsp;wsparcia</strong>, a&nbsp;nie przypadkowych ćwiczeń;</li>
+        <li>nie chcesz iść na egzamin „w&nbsp;ciemno" – nie wiesz, <strong>czego dokładnie spodziewać się</strong> na egzaminie;</li>
+        <li>masz <strong>konkretny egzamin przed sobą</strong> i&nbsp;chcesz się do niego przygotować krok po kroku;</li>
+        <li>chcesz wiedzieć, <strong>czego naprawdę oczekują</strong> egzaminatorzy;</li>
+        <li>chcesz wejść na egzamin z&nbsp;poczuciem: <em>„jestem przygotowany/a"</em>.</li>
+      </ul>
+      <hr>
+      <h2>Dzięki przygotowaniu do egzaminu:</h2>
+      <ul class="check-list">
+        <li>idziesz na egzamin z <strong>konkretnym planem</strong>, a nie z chaosem w&nbsp;głowie;</li>
+        <li>mówisz <strong>pewniej i&nbsp;spokojniej</strong>, nawet pod presją;</li>
+        <li>przestajesz tracić punkty na „głupich błędach";</li>
+        <li>ćwiczysz zadania, które <strong>realnie pojawiają się na egzaminie</strong>;</li>
+        <li>rozumiesz <strong>strukturę i&nbsp;kryteria oceniania</strong>;</li>
+        <li>wiesz <strong>dokładnie</strong>, czego spodziewać się na egzaminie.</li>
+      </ul>
+      <hr>
+      <h2>Jak pracujemy na zajęciach?</h2>
+      <ul class="check-list">
+        <li>zajęcia odbywają się <strong>na żywo (Zoom)</strong>;</li>
+        <li>lekcja trwa standardowo <strong>60 minut</strong> z&nbsp;możliwością skrócenia/przedłużenia;</li>
+        <li>zaczynamy od <strong>diagnozy poziomu i&nbsp;celu egzaminacyjnego</strong>;</li>
+        <li>dokładnie <strong>omawiamy strukturę egzaminu</strong> i&nbsp;kryteria oceniania;</li>
+        <li>pracujemy na <strong>autentycznych zadaniach egzaminacyjnych</strong>;</li>
+        <li>ćwiczymy <strong>strategie egzaminacyjne</strong>;</li>
+        <li>regularnie dostajesz <strong>konkretny feedback</strong>.</li>
+      </ul>
+      <p style="margin-top:1rem;font-size:0.97rem;">Nie uczymy się „wszystkiego". Uczymy się <strong>tego, co naprawdę może się pojawić na egzaminie</strong>.</p>
+    </div>
+    <div class="img-col">
+      <img src="img_exam.png" alt="Przygotowanie do egzaminu z języka polskiego">
+      <div class="price-box">
+        <p class="label">Cena zajęć przygotowania do egzaminu:</p>
+        <p class="big">od 73 zł / osoba / 60 minut</p>
+        <p class="note">Cena zależy od częstotliwości zajęć i&nbsp;wybranego pakietu.<br>Szczegóły znajdziesz poniżej.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══ SEKCJA 3: FEATURES – WYŚRODKOWANE Z EMOJI NA NIEBIESKO ══ -->
+<section class="section" style="background:var(--blue-bg);">
+  <div class="container">
+    <h2 class="section-title" style="margin-bottom:2.5rem;">Przygotowanie do egzaminu, które naprawdę przyspieszy Twoje postępy</h2>
+    <div class="features-eg">
+      <div class="fi">
+        <div class="fi-top">
+          <span class="fi-emoji">📅</span>
+          <h3>Elastyczny grafik</h3>
+        </div>
+        <p>Możesz wybrać wygodny dla siebie czas zajęć i&nbsp;tempo pracy – dopasowane do <strong>terminu egzaminu</strong> i&nbsp;Twoich możliwości.</p>
+      </div>
+      <div class="fi">
+        <div class="fi-top">
+          <span class="fi-emoji">🎯</span>
+          <h3>Realne efekty</h3>
+        </div>
+        <p>Pracujemy dokładnie na tym, co pojawia się na egzaminie. Skupiamy się na zadaniach i&nbsp;umiejętnościach, które <strong>realnie wpływają na wynik</strong>.</p>
+      </div>
+      <div class="fi">
+        <div class="fi-top">
+          <span class="fi-emoji">✏️</span>
+          <h3>Świadoma strategia egzaminacyjna</h3>
+        </div>
+        <p>Wiesz, jak <strong>odpowiadać</strong>, jak zarządzać czasem i na co zwracają uwagę egzaminatorzy – bez zgadywania i&nbsp;chaosu.</p>
+      </div>
+      <div class="fi">
+        <div class="fi-top">
+          <span class="fi-emoji">💬</span>
+          <h3>Pewność w&nbsp;mówieniu</h3>
+        </div>
+        <p>Ćwiczysz wypowiedzi ustne tak, by mówić <strong>spokojnie, logicznie</strong> i&nbsp;na temat, nawet pod presją czasu.</p>
+      </div>
+      <div class="fi">
+        <div class="fi-top">
+          <span class="fi-emoji">🌍</span>
+          <h3>Lepsze rozumienie języka w&nbsp;praktyce</h3>
+        </div>
+        <p>Oswajasz się z <strong>tempem mowy, pytaniami egzaminatorów</strong> i&nbsp;autentycznymi materiałami – bez niespodzianek na egzaminie.</p>
+      </div>
+      <div class="fi">
+        <div class="fi-top">
+          <span class="fi-emoji">📈</span>
+          <h3>Stałe wsparcie i&nbsp;feedback</h3>
+        </div>
+        <p>Po każdej lekcji dostajesz jasną informację, <strong>co już działa</strong>, a&nbsp;nad czym warto jeszcze popracować.</p>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:2.5rem;font-size:1rem;">✨ Nie uczymy się „ogólnie". Każde zajęcia są przygotowane pod <strong>Twój egzamin</strong>, <strong>Twój poziom</strong> i <strong>Twój cel</strong>.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══ SEKCJA 4: CENNIK ══ -->
+<section class="section" style="background:#fff;" id="cennik">
+  <div class="container">
+    <h2 class="section-title">Cennik</h2>
+    <p class="section-sub"><strong>Zajęcia próbne</strong> (do 30 minut) są <strong>bezpłatne i&nbsp;niezobowiązujące</strong>. Mają na celu zapoznanie się, sprawdzenie poziomu języka oraz zaproponowanie możliwych wariantów zajęć.</p>
+
+    <div class="cennik-grid">
+      <!-- LEWA: jednorazowe -->
+      <div>
+        <h3>Przygotowanie do egzaminów</h3>
+        <p class="sub"><strong>Zajęcia indywidualne (1:1)</strong><br>Pełna uwaga lektorki, praca nad konkretnym egzaminem i&nbsp;indywidualny plan nauki.</p>
+
+        <div class="price-item">
+          <div class="price-item-top">
+            <span class="name">Przygotowanie do egzaminu certyfikatowego (B1)</span>
+            <span><span class="amt">140 zł</span> <span class="per">/60 min.</span></span>
+          </div>
+          <div class="desc">zajęcia 1:1, omówienie struktury egzaminu B1, kurs z&nbsp;elementami ogólnego polskiego</div>
+        </div>
+        <div class="price-item">
+          <div class="price-item-top">
+            <span class="name">Przygotowanie do egzaminu certyfikatowego (B2)</span>
+            <span><span class="amt">160 zł</span> <span class="per">/60 min.</span></span>
+          </div>
+          <div class="desc">zajęcia 1:1, omówienie struktury egzaminu B2, kurs z&nbsp;elementami ogólnego polskiego</div>
+        </div>
+        <div class="price-item">
+          <div class="price-item-top">
+            <span class="name">Przygotowanie do egzaminu TELC (B1-B2)</span>
+            <span><span class="amt">130 zł</span> <span class="per">/60 min.</span></span>
+          </div>
+          <div class="desc">zajęcia 1:1, omówienie struktury egzaminu TELC</div>
+        </div>
+        <div class="price-item">
+          <div class="price-item-top">
+            <span class="name">Przygotowanie do rozmowy na Kartę Polaka</span>
+            <span><span class="amt">110 zł</span> <span class="per">/60 min.</span></span>
+          </div>
+          <div class="desc">zajęcia 1:1, słownictwo historyczno-kulturowe i&nbsp;realne pytania egzaminacyjne</div>
+        </div>
+
+        <p class="price-sub-header">Zajęcia w&nbsp;parach</p>
+        <div class="price-item">
+          <div class="price-item-top">
+            <span class="name">Egzamin certyfikatowy (B1) w&nbsp;parze</span>
+            <span><span class="amt">210 zł</span> <span class="per">/60 min.</span></span>
+          </div>
+        </div>
+        <div class="price-item">
+          <div class="price-item-top">
+            <span class="name">Egzamin certyfikatowy (B2) w&nbsp;parze</span>
+            <span><span class="amt">220 zł</span> <span class="per">/60 min.</span></span>
+          </div>
+        </div>
+        <div class="price-item">
+          <div class="price-item-top">
+            <span class="name">Egzamin TELC (B1-B2) w&nbsp;parze</span>
+            <span><span class="amt">200 zł</span> <span class="per">/60 min.</span></span>
+          </div>
+        </div>
+        <div class="price-item">
+          <div class="price-item-top">
+            <span class="name">Karta Polaka dla dwóch osób</span>
+            <span><span class="amt">160 zł</span> <span class="per">/60 min.</span></span>
+          </div>
+        </div>
+
+        <div class="shorter-note">
+          <strong>Chcesz skrócić lub wydłużyć zajęcia?</strong><br>
+          Dla osób, które chcą pracować krócej, dostępne są lekcje <strong>45-minutowe</strong>.<br>
+          Dla osób chcących pracować intensywniej dostępna jest lekcja <strong>90-minutowa</strong>.
+        </div>
+      </div>
+
+      <!-- PRAWA: pakiety wysuwane -->
+      <div>
+        <h3>Pakiety zajęć</h3>
+        <p class="sub"><strong>Najlepsze efekty robi regularność.</strong><br>Dlatego pakiety wybierane są najczęściej.</p>
+
+        <div class="pkg-item">
+          <button class="pkg-trigger open" onclick="togglePkg(this)">
+            Egzamin certyfikatowy (B1) – indywidualnie
+            <span class="pkg-icon">+</span>
+          </button>
+          <div class="pkg-body open">
+            <div class="pkg-row"><span>⭐ <strong>najczęściej wybierany</strong></span><span class="pkg-popular">1556 zł / 12 lekcji</span></div>
+            <div class="pkg-row"><span>8 lekcji</span><span><strong>1064 zł</strong></span></div>
+            <div class="pkg-row"><span>4 lekcje</span><span><strong>542 zł</strong></span></div>
+          </div>
+        </div>
+        <div class="pkg-item">
+          <button class="pkg-trigger" onclick="togglePkg(this)">
+            Egzamin certyfikatowy (B2) – indywidualnie
+            <span class="pkg-icon">+</span>
+          </button>
+          <div class="pkg-body">
+            <div class="pkg-row"><span>12 lekcji</span><span><strong>1798 zł</strong></span></div>
+            <div class="pkg-row"><span>⭐ <strong>najczęściej wybierany</strong></span><span class="pkg-popular">1224 zł / 8 lekcji</span></div>
+            <div class="pkg-row"><span>4 lekcje</span><span><strong>620 zł</strong></span></div>
+          </div>
+        </div>
+        <div class="pkg-item">
+          <button class="pkg-trigger" onclick="togglePkg(this)">
+            Egzamin TELC (B1-B2) – indywidualnie
+            <span class="pkg-icon">+</span>
+          </button>
+          <div class="pkg-body">
+            <div class="pkg-row"><span>12 lekcji</span><span><strong>1435 zł</strong></span></div>
+            <div class="pkg-row"><span>⭐ <strong>najczęściej wybierany</strong></span><span class="pkg-popular">978 zł / 8 lekcji</span></div>
+            <div class="pkg-row"><span>4 lekcje</span><span><strong>504 zł</strong></span></div>
+          </div>
+        </div>
+        <div class="pkg-item">
+          <button class="pkg-trigger" onclick="togglePkg(this)">
+            Karta Polaka – indywidualnie
+            <span class="pkg-icon">+</span>
+          </button>
+          <div class="pkg-body">
+            <div class="pkg-row"><span>⭐ <strong>najczęściej wybierany</strong></span><span class="pkg-popular">1224 zł / 12 lekcji</span></div>
+            <div class="pkg-row"><span>8 lekcji</span><span><strong>832 zł</strong></span></div>
+            <div class="pkg-row"><span>4 lekcje</span><span><strong>428 zł</strong></span></div>
+          </div>
+        </div>
+        <div class="pkg-item">
+          <button class="pkg-trigger" onclick="togglePkg(this)">
+            Egzamin certyfikatowy (B1) – w&nbsp;parze
+            <span class="pkg-icon">+</span>
+          </button>
+          <div class="pkg-body">
+            <div class="pkg-row"><span>⭐ <strong>najczęściej wybierany</strong></span><span class="pkg-popular">2136 zł / 12 lekcji</span></div>
+            <div class="pkg-row"><span>8 lekcji</span><span><strong>1456 zł</strong></span></div>
+            <div class="pkg-row"><span>4 lekcje</span><span><strong>740 zł</strong></span></div>
+          </div>
+        </div>
+        <div class="pkg-item">
+          <button class="pkg-trigger" onclick="togglePkg(this)">
+            Egzamin certyfikatowy (B2) – w&nbsp;parze
+            <span class="pkg-icon">+</span>
+          </button>
+          <div class="pkg-body">
+            <div class="pkg-row"><span>12 lekcji</span><span><strong>1798 zł</strong></span></div>
+            <div class="pkg-row"><span>⭐ <strong>najczęściej wybierany</strong></span><span class="pkg-popular">1224 zł / 8 lekcji</span></div>
+            <div class="pkg-row"><span>4 lekcje</span><span><strong>864 zł</strong></span></div>
+          </div>
+        </div>
+        <div class="pkg-item">
+          <button class="pkg-trigger" onclick="togglePkg(this)">
+            Egzamin TELC (B1-B2) – w&nbsp;parze
+            <span class="pkg-icon">+</span>
+          </button>
+          <div class="pkg-body">
+            <div class="pkg-row"><span>⭐ <strong>najczęściej wybierany</strong></span><span class="pkg-popular">2280 zł / 12 lekcji</span></div>
+            <div class="pkg-row"><span>8 lekcji</span><span><strong>1544 zł</strong></span></div>
+            <div class="pkg-row"><span>4 lekcje</span><span><strong>784 zł</strong></span></div>
+          </div>
+        </div>
+        <div class="pkg-item">
+          <button class="pkg-trigger" onclick="togglePkg(this)">
+            Karta Polaka – w&nbsp;parze
+            <span class="pkg-icon">+</span>
+          </button>
+          <div class="pkg-body">
+            <div class="pkg-row"><span>⭐ <strong>najczęściej wybierany</strong></span><span class="pkg-popular">1798 zł / 12 lekcji</span></div>
+            <div class="pkg-row"><span>8 lekcji</span><span><strong>1224 zł</strong></span></div>
+            <div class="pkg-row"><span>4 lekcje</span><span><strong>620 zł</strong></span></div>
+          </div>
+        </div>
+
+        <div class="referral-acc">
+          <button class="referral-trigger" onclick="toggleReferral(this)">
+            🎁 Poleć mnie znajomemu – oboje zyskujecie
+            <span class="pkg-icon">+</span>
+          </button>
+          <div class="referral-body">
+            <p>Jeśli polecisz moje zajęcia znajomemu, który <strong>zdecyduje się</strong> na naukę ze mną, <strong>oboje</strong> otrzymacie jednorazową <strong>zniżkę</strong>:</p>
+            <p><strong>-10%</strong> na jedne zajęcia jednorazowe; <strong>dodatkowe -4%</strong> na pakiet indywidualny; <strong>-100 zł</strong> na pakiety w&nbsp;parach; <strong>-150 zł</strong> na pakiety dla trojga.</p>
+            <p>Zniżki są nadawane jednorazowo. Lubię, kiedy języka uczymy się razem 🙂</p>
+          </div>
+        </div>
+
+        <div style="margin-top:1.5rem;font-size:0.88rem;color:var(--text-light);line-height:1.6;">
+          Płatność odbywa się z&nbsp;góry za zajęcia. Szczegóły znajdziesz w <a href="faq.html">FAQ</a>.
+        </div>
+      </div>
+    </div>
+
+    <div class="payment-note">
+      <p>Nie musisz wybierać pakietu teraz.<br>Wiele osób zaczyna od <strong>lekcji próbnej</strong> i&nbsp;decyduje później.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══ SEKCJA 5: TEST ══ -->
+<section style="background:var(--blue-bg);">
+  <div class="test-cta">
+    <h2>Nie wiesz, jaki masz poziom języka?</h2>
+    <a href="test.html" class="btn">Wykonaj test</a>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══ SEKCJA 6: FINAL CTA ══ -->
+<section class="section" style="background:#fff;">
+  <div class="container final-cta">
+    <h2>Jesteś gotowy/gotowa<br>na <span>realny</span> postęp w&nbsp;polskim?</h2>
+    <div class="final-grid">
+      <div>
+        <p class="final-cal-title">Umów się na lekcję próbną!</p>
+        <p class="final-cal-sub">Nie musisz decydować teraz. Zacznij od <strong>bezpłatnej lekcji próbnej</strong> – zobaczysz, jak wyglądają zajęcia i&nbsp;dopiero potem zdecydujesz.</p>
+        <div class="activenow-form-container activenow-trial-lesson-signup-panel-container">
+          <center><img src="https://www.activenow.io/assets/ripple.gif" width="80px" alt="Ładowanie..."></center>
+          <script async src="https://app.activenow.io/external/trial_lesson_signup_panel/load_by_js?code=wSO9b3Qo5mtoA2q7&school_id=13220&signup_form_id=169175"></script>
+        </div>
+      </div>
+      <div>
+        <p class="final-cal-title">Nie ma interesującego Cię wariantu?</p>
+        <p class="final-cal-sub">Skontaktuj się ze mną!</p>
+        <form id="egz-contact-form" novalidate>
+          <div class="form-group">
+            <label for="egz-name">Twoje imię *</label>
+            <input type="text" id="egz-name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="egz-email">E-mail *</label>
+            <input type="email" id="egz-email" name="email" required placeholder="@">
+          </div>
+          <div class="form-group">
+            <label for="egz-telegram">Nick w Telegramie</label>
+            <input type="text" id="egz-telegram" name="telegram">
+          </div>
+          <div class="form-group">
+            <label>Mój poziom języka</label>
+            <div class="radio-group">
+              <label><input type="radio" name="poziom" value="A0"> A0</label>
+              <label><input type="radio" name="poziom" value="A1"> A1</label>
+              <label><input type="radio" name="poziom" value="A2"> A2</label>
+              <label><input type="radio" name="poziom" value="B1"> B1</label>
+              <label><input type="radio" name="poziom" value="B2"> B2</label>
+              <label><input type="radio" name="poziom" value="nie wiem"> nie wiem</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="egz-zajecia">Zajęcia, które mnie interesują:</label>
+            <select id="egz-zajecia" name="zajecia">
+              <option>Zajęcia indywidualne</option>
+              <option>Zajęcia w mini grupach</option>
+              <option  selected>Przygotowanie do egzaminu</option>
+              <option>Inne / mam pytanie</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="egz-msg">Wiadomość</label>
+            <textarea id="egz-msg" name="message"></textarea>
+          </div>
+          <div class="gdpr-check">
+            <input type="checkbox" id="egz-gdpr" name="gdpr">
+            <label for="egz-gdpr">Wyrażam zgodę na przetwarzanie moich danych osobowych w celu odpowiedzi na zapytanie i kontaktu w sprawie zajęć. Dane kontaktowe są wykorzystywane wyłącznie w celu odpowiedzi na zapytanie. Zapoznałem/-am się z <a href="polityka-prywatnosci.html">Polityką Prywatności</a>.</label>
+          </div>
+          <div class="gdpr-error" style="display:none;color:red;font-size:0.82rem;margin-bottom:0.8rem;">Zaznacz zgodę na przetwarzanie danych.</div>
+          <button type="submit" class="btn" id="egz-submit" disabled>Napisz do mnie</button>
+          <p class="form-note">Na wiadomości odpowiadam zwykle w ciągu <strong>24 godzin.</strong></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+    <a href="regulamin.html">Regulamin</a>
+  </div>
+  <div>© 2026 | IB Polish | Wszystkie prawa zastrzeżone</div>
+</footer>
+
+<script src="nav.js"></script>
+<script>
+function togglePkg(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  document.querySelectorAll('.pkg-trigger.open').forEach(b => {
+    b.classList.remove('open');
+    b.nextElementSibling.classList.remove('open');
+  });
+  if (!isOpen) { btn.classList.add('open'); body.classList.add('open'); }
+}
+function toggleReferral(btn) {
+  const body = btn.nextElementSibling;
+  btn.classList.toggle('open');
+  body.classList.toggle('open');
+  const icon = btn.querySelector('.pkg-icon');
+  icon.style.transform = body.classList.contains('open') ? 'rotate(45deg)' : '';
+}
+</script>
+<script>setupContactForm('egz-contact-form', 'https://formspree.io/f/mpqjynbg');</script>
+</body>
+</html>

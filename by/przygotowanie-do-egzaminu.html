@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="be">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Падрыхтоўка да экзамену – IB Polish</title>
+  <link rel="icon" href="../logo.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    h1, h2, h3 { color: #5b9ab5 !important; }
+    .btn { background: #5b9ab5 !important; }
+    .btn:hover { background: #7ab5cc !important; }
+    .eg-intro { max-width: 860px; margin: 0 auto; text-align: center; padding: 4rem 2rem 3rem; }
+    .eg-intro h1 { margin-bottom: 1.2rem; }
+    .eg-intro p { font-size: 1rem; line-height: 1.8; }
+    .eg-main { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    .eg-main .list-col h2 { font-size: 1.25rem; color: var(--blue); margin-bottom: 0.8rem; }
+    .eg-main .list-col .check-list { margin-bottom: 1.2rem; }
+    .eg-main .list-col .check-list li { font-size: 0.97rem; line-height: 1.7; }
+    .eg-main .list-col hr { border: none; border-top: 1px solid var(--border); margin: 1.2rem 0; }
+    .eg-main .img-col img { width: 100%; border-radius: 16px; box-shadow: 0 8px 32px rgba(91,154,181,0.18); }
+    .price-box { background: var(--blue-bg); border-radius: var(--radius); padding: 1.2rem 1.5rem; margin-top: 1.5rem; text-align: center; border: 1px solid var(--border); }
+    .price-box .label { font-weight: 700; font-size: 0.92rem; margin-bottom: 0.3rem; }
+    .price-box .big { font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 600; color: var(--blue); margin-bottom: 0.4rem; }
+    .price-box .note { font-size: 0.82rem; color: var(--text-light); line-height: 1.5; }
+    @media (max-width: 768px) { .eg-main { grid-template-columns: 1fr; } .eg-main .img-col { order: -1; } }
+    .features-eg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; max-width: 1100px; margin: 0 auto; }
+    @media (max-width: 768px) { .features-eg { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .features-eg { grid-template-columns: 1fr; } }
+    .fi { display: flex; flex-direction: column; text-align: center; align-items: center; }
+    .fi-top { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.7rem; justify-content: center; }
+    .fi-emoji { font-size: 1.8rem; color: var(--blue); }
+    .fi-top h3 { font-size: 1rem; color: var(--blue); font-family: 'Nunito', sans-serif; font-weight: 700; margin: 0; }
+    .fi p { font-size: 0.92rem; color: var(--text); line-height: 1.7; text-align: center; }
+    .cennik-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1100px; margin: 0 auto; align-items: start; }
+    @media (max-width: 768px) { .cennik-grid { grid-template-columns: 1fr; } }
+    .cennik-grid h3 { font-size: 1.3rem; text-align: center; margin-bottom: 0.4rem; color: var(--blue); font-family: 'Nunito', sans-serif; font-weight: 700; }
+    .cennik-grid .sub { text-align: center; font-size: 0.88rem; margin-bottom: 1.5rem; }
+    .price-item { padding: 1rem 0; border-bottom: 1px solid var(--border); }
+    .price-item:last-of-type { border-bottom: none; }
+    .price-item-top { display: flex; justify-content: space-between; align-items: baseline; }
+    .price-item-top .name { font-size: 0.95rem; color: var(--blue); font-weight: 600; flex: 1; padding-right: 1rem; }
+    .price-item-top .amt { font-family: 'Lora', serif; font-size: 1.3rem; color: var(--blue); font-weight: 600; white-space: nowrap; }
+    .price-item-top .per { font-size: 0.75rem; color: var(--text-light); font-family: 'Nunito', sans-serif; }
+    .price-item .desc { font-size: 0.82rem; color: var(--text-light); margin-top: 0.2rem; }
+    .shorter-note { background: var(--blue-bg); border-radius: 8px; padding: 1rem 1.2rem; margin-top: 1.2rem; font-size: 0.9rem; line-height: 1.7; }
+    .price-sub-header { font-size: 0.88rem; color: var(--text-light); font-weight: 700; margin: 1.5rem 0 0.5rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+    .pkg-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 0.6rem; overflow: hidden; }
+    .pkg-trigger { width: 100%; background: #fff; border: none; cursor: pointer; padding: 1rem 1.2rem; display: flex; justify-content: space-between; align-items: center; font-family: 'Nunito', sans-serif; font-size: 0.93rem; font-weight: 600; color: var(--blue); text-align: left; transition: background 0.2s; }
+    .pkg-trigger:hover { background: var(--blue-bg); }
+    .pkg-trigger.open { background: var(--blue-bg); }
+    .pkg-icon { font-size: 1.2rem; line-height: 1; transition: transform 0.3s; flex-shrink: 0; }
+    .pkg-trigger.open .pkg-icon { transform: rotate(45deg); }
+    .pkg-body { display: none; background: #f9fbfc; border-top: 1px solid var(--border); padding: 0.8rem 1.2rem; }
+    .pkg-body.open { display: block; }
+    .pkg-row { display: flex; justify-content: space-between; padding: 0.45rem 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+    .pkg-row:last-child { border-bottom: none; }
+    .pkg-popular { font-weight: 700; color: var(--blue); }
+    .referral-acc { border: 1px solid var(--border); border-radius: var(--radius); margin-top: 0.6rem; overflow: hidden; }
+    .referral-trigger { width: 100%; background: #fff; border: none; cursor: pointer; padding: 1rem 1.2rem; display: flex; justify-content: space-between; align-items: center; font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--blue); text-align: left; transition: background 0.2s; }
+    .referral-trigger:hover { background: var(--blue-bg); }
+    .referral-body { display: none; background: #f9fbfc; border-top: 1px solid var(--border); padding: 1rem 1.2rem; font-size: 0.88rem; line-height: 1.7; }
+    .referral-body.open { display: block; }
+    .payment-note { max-width: 700px; margin: 2.5rem auto 0; text-align: center; border-top: 1px solid var(--border); padding-top: 2rem; }
+    .test-cta { text-align: center; padding: 3.5rem 2rem; }
+    .test-cta h2 { margin-bottom: 1.5rem; }
+    .final-cta { text-align: center; }
+    .final-cta h2 { font-size: clamp(1.6rem, 3.5vw, 2.5rem); margin-bottom: 3rem; }
+    .final-cta h2 span { text-decoration: underline; }
+    .final-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1100px; margin: 0 auto; text-align: left; }
+    @media (max-width: 768px) { .final-grid { grid-template-columns: 1fr; } }
+    .final-cal-title { font-size: 1.2rem; color: var(--blue); font-weight: 700; text-align: center; margin-bottom: 0.8rem; }
+    .final-cal-sub { text-align: center; font-size: 0.92rem; margin-bottom: 1.5rem; }
+    footer { padding: 1.8rem 2rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--text-light); flex-wrap: wrap; gap: 0.5rem; }
+    footer a { color: var(--text-light); } footer a:hover { color: var(--blue); }
+    .footer-links { display: flex; gap: 2rem; }
+  
+/* Language switcher dropdown */
+.lang-switch-wrapper { position: relative; list-style: none; }
+.lang-switch-btn {
+  background: none; border: 1px solid var(--border);
+  border-radius: 6px; padding: 0.3rem 0.7rem;
+  font-family: 'Nunito', sans-serif; font-size: 0.88rem;
+  font-weight: 600; color: var(--blue); cursor: pointer;
+  white-space: nowrap; transition: background 0.2s;
+}
+.lang-switch-btn:hover { background: var(--blue-bg); }
+.lang-dropdown {
+  display: none; position: absolute; right: 0; top: 110%;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 8px; min-width: 150px; z-index: 1000;
+  box-shadow: 0 4px 16px rgba(91,154,181,0.12);
+  padding: 0.3rem 0;
+}
+.lang-dropdown.open { display: block; }
+.lang-dropdown a {
+  display: block; padding: 0.5rem 1rem;
+  font-size: 0.88rem; color: var(--text);
+  text-decoration: none; transition: background 0.15s;
+}
+.lang-dropdown a:hover { background: var(--blue-bg); color: var(--blue); }
+.lang-dropdown a.lang-active { font-weight: 700; color: var(--blue); }
+
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="../logo.jpg" alt="IB Polish logo">
+    <span class="nav-logo-text">IB Polish</span>
+  </a>
+  <button class="hamburger" aria-label="Меню"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
+    <li><a href="index.html">Галоўная</a></li>
+    <li><a href="o-mnie.html">Пра мяне</a></li>
+    <li class="nav-dropdown"><a href="oferta.html" class="active">Прапанова</a>
+      <div class="dropdown-menu">
+        <a href="zajecia-indywidualne.html">Індывідуальныя ўрокі</a>
+        <a href="zajecia-mini-grupy.html">Заняткі ў міні-групах</a>
+        <a href="przygotowanie-do-egzaminu.html">Падрыхтоўка да экзамену</a>
+      </div>
+    </li>
+    <li><a href="opinie.html">Водгукі</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="test.html">Моўны тэст</a></li>
+    <li><a href="kontakt.html" class="btn" style="padding:0.45rem 1.2rem;font-size:0.88rem;">Кантакт</a></li>
+    <li class="lang-switch-wrapper">
+      <button class="lang-switch-btn" id="lang-switch-btn">🇧🇾 <span>BY</span> ▾</button>
+      <div class="lang-dropdown" id="lang-dropdown">
+        <a href="../przygotowanie-do-egzaminu.html">🇵🇱 PL</a>
+        <a href="../ru/przygotowanie-do-egzaminu.html">🇷🇺 RU</a>
+        <a href="../by/przygotowanie-do-egzaminu.html" class="lang-active">🇧🇾 BY</a>
+        <a href="../ua/przygotowanie-do-egzaminu.html">🇺🇦 UA</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<section style="background:#fff;">
+  <div class="eg-intro">
+    <h1>Падрыхтоўка да экзамену</h1>
+    <p>Падрыхтоўка да экзамену — гэта заняткі для тых, хто хоча здаць канкрэтны экзамен — <strong>осознанно, спокойно</strong> и <strong>без хаоса</strong>. Мы работаем с реальными экзаменационными заданиями, подробно разбираем структуру экзамена и изучаем <strong>стратегии</strong>, якія дапамагаюць набіраць балы, а не проста «ведаць мову».</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section" style="background:#fff;">
+  <div class="eg-main">
+    <div class="list-col">
+      <h2>Гэтыя заняткі для вас, калі:</h2>
+      <ul class="check-list">
+        <li>экзаменацыйны стрэс блакуе вам гаворка і вы хочаце ад яго пазбавіцца;</li>
+        <li>вам патрэбна <strong>канкрэтыка</strong>, <strong>структура</strong> і <strong>падтрымка</strong>, а не выпадковыя практыкаванні;</li>
+        <li>вы не хочаце ісці на экзамен «усляпую» — не ведаеце, <strong>чаго</strong> <strong>менавіта чакаць</strong>;</li>
+        <li><strong>у вас канкрэтны</strong> <strong>экзамен</strong> і вы хочаце рыхтавацца да яго крок за крокам;</li>
+        <li>хочаце ведаць, <strong>чаго рэальна</strong> <strong>чакаюць</strong> экзаменатары;</li>
+        <li>хочаце ўвайсці на экзамен з адчуваннем: «я гатовы/гатовая».</li>
+      </ul>
+      <hr>
+      <h2>Дзякуючы падрыхтоўцы да іспыту:</h2>
+      <ul class="check-list">
+        <li>ідзяце на экзамен з <strong>канкрэтным</strong> <strong>планам</strong>, а не з хаосам у галаве;</li>
+        <li>кажаце больш <strong>упэўнена</strong> і <strong>спакайней</strong>, нават пад ціскам;</li>
+        <li>перастаеце губляць балы на «дурных памылках»;</li>
+        <li>адпрацоўваеце заданні, якія <strong>рэальна</strong> <strong>сустракаюцца</strong> <strong>на экзамене</strong>;</li>
+        <li>разумееце <strong>структуру</strong> і <strong>крытэрыі</strong> <strong>ацэньвання</strong>;</li>
+        <li><strong>дакладна</strong> ведаеце, чаго чакаць на экзамене.</li>
+      </ul>
+      <hr>
+      <h2>Як мы працуем на занятках?</h2>
+      <ul class="check-list">
+        <li>заняткі праходзяць у <strong>прамым</strong> <strong>эфіры</strong> <strong>(Zoom)</strong>;</li>
+        <li>урок доўжыцца <strong>60 хвілін</strong> з магчымасцю змены;</li>
+        <li>пачынаем з <strong>дыягностыкі</strong> <strong>ўзроўню</strong> і <strong>экзаменацыйнай</strong> <strong>мэты</strong>;</li>
+        <li>падрабязна <strong>разбіраем</strong> <strong>структуру</strong> <strong>экзамену</strong> і крытэрыі ацэньвання;</li>
+        <li>працуем з <strong>аўтэнтычнымі</strong> <strong>экзаменацыйнымі</strong> <strong>заданнямі</strong>;</li>
+        <li>адпрацоўваем <strong>экзаменацыйныя</strong> <strong>стратэгіі</strong>;</li>
+        <li>рэгулярна атрымліваеце канкрэтную <strong>зваротную</strong> <strong>сувязь</strong>.</li>
+      </ul>
+      <p style="margin-top:1rem;font-size:0.97rem;">Мы вучым не «ўсё запар». Вучым <strong>тое, што рэальна</strong> <strong>можа сустрэцца</strong> <strong>на экзамене</strong>.</p>
+    </div>
+    <div class="img-col">
+      <img src="../img_exam.png" alt="Падрыхтоўка да экзамену по польскому языку">
+      <div class="price-box">
+        <p class="label">Стоимость подготовки к экзамену:</p>
+        <p class="big">от 73 зл / чел. / 60 хвут</p>
+        <p class="note">Кошт залежыць ад частаты заняткаў і абранага пакета. Падрабязнасці ніжэй.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section" style="background:var(--blue-bg);">
+  <div class="container">
+    <h2 class="section-title" style="margin-bottom:2.5rem;">Падрыхтоўка да іспыту, якая сапраўды паскорыць ваш прагрэс</h2>
+    <div class="features-eg">
+      <div class="fi"><div class="fi-top"><span class="fi-emoji">📅</span><h3>Гнуткае расклад</h3></div><p>Выбірайце зручны час і тэмп працы-адаптаваныя да <strong>даты экзамену</strong> і вашым магчымасцям.</p></div>
+      <div class="fi"><div class="fi-top"><span class="fi-emoji">🎯</span><h3>Рэальныя вынікі</h3></div><p>Працуем менавіта з тым, што сустракаецца на экзамене. Засяроджваемся на заданнях і навыках, якія рэальна <strong>ўплываюць на вынік</strong>.</p></div>
+      <div class="fi"><div class="fi-top"><span class="fi-emoji">✏️</span><h3>Усвядомленая стратэгія</h3></div><p>Вы ведаеце, як <strong>адказваць</strong>, як кіраваць часам і на што звяртаюць увагу без угадывания.</p></div>
+      <div class="fi"><div class="fi-top"><span class="fi-emoji">💬</span><h3>Упэўненасць у прамовы</h3></div><p>Адпрацоўваеце вусныя адказы, каб гаварыць <strong>спакойна</strong>, <strong>лагічна</strong> і па тэме — нават пад ціскам часу.</p></div>
+      <div class="fi"><div class="fi-top"><span class="fi-emoji">🌍</span><h3>Лепшае разуменне мовы</h3></div><p>Абвыкаеце да <strong>тэмпу</strong> <strong>прамовы</strong>, <strong>пытаннях экзаменатараў</strong> і аўтэнтычным матэрыялам — без сюрпрызаў на экзамене.</p></div>
+      <div class="fi"><div class="fi-top"><span class="fi-emoji">📈</span><h3>Пастаянная падтрымка</h3></div><p>Пасля кожнага ўрока атрымліваеце выразную інфармацыю: <strong>што ўжо працуе</strong>, а над чым яшчэ варта папрацаваць.</p></div>
+    </div>
+    <p style="text-align:center;margin-top:2.5rem;font-size:1rem;">✨ Мы не вучым «увогуле». Кожны занятак ствараецца пад <strong>ваш экзамен, ваш ўзровень</strong> <strong>і вашу мэта</strong>.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section" style="background:#fff;" id="cennik">
+  <div class="container">
+    <h2 class="section-title">Кошт заняткаў</h2>
+    <p class="section-sub"><strong>Пробны</strong> <strong>ўрок</strong> (да 30 хвілін) — <strong>бясплатны</strong> і <strong>без абавязацельстваў</strong>. Яго мэта –пазнаёміцца, праверыць узровень мовы і прапанаваць магчымыя варыянты заняткаў.</p>
+
+    <div class="cennik-grid">
+      <div>
+        <h3><strong>Падрыхтоўка да экзаменаў</strong></h3>
+        <p class="sub"><strong>Індывідуальныя ўрокі (1:1)</strong><br>Полное внимание преподавателя, работа над конкретным экзаменом и индивидуальный план.</p>
+
+        <div class="price-item">
+          <div class="price-item-top"><span class="name">Падрыхтоўка да экзамену (B1)</span><span><span class="amt">140 зл</span> <span class="per">/60 хв.</span></span></div>
+          <div class="desc">заняткі 1:1, разбор структуры экзамена B1, курс з элементамі агульнай польскай</div>
+        </div>
+        <div class="price-item">
+          <div class="price-item-top"><span class="name">Падрыхтоўка да экзамену (B2)</span><span><span class="amt">160 зл</span> <span class="per">/60 хв.</span></span></div>
+          <div class="desc">заняткі 1:1, разбор структуры экзамена B2, курс з элементамі агульнай польскай</div>
+        </div>
+        <div class="price-item">
+          <div class="price-item-top"><span class="name">Падрыхтоўка да іспыту TELC (B1-B2)</span><span><span class="amt">130 зл</span> <span class="per">/60 хв.</span></span></div>
+          <div class="desc">заняткі 1:1, разбор структуры экзамена TELC</div>
+        </div>
+        <div class="price-item">
+          <div class="price-item-top"><span class="name">Подготовка да сумоўю на Карту паляка</span><span><span class="amt">110 зл</span> <span class="per">/60 хв.</span></span></div>
+          <div class="desc">заняткі 1:1, гісторыка-культурная лексіка і рэальныя экзаменацыйныя пытанні</div>
+        </div>
+
+        <p class="price-sub-header">Заняткі ў парах</p>
+        <div class="price-item"><div class="price-item-top"><span class="name">Сертификационный экзамен (B1) в паре</span><span><span class="amt">210 зл</span> <span class="per">/60 хв.</span></span></div></div>
+        <div class="price-item"><div class="price-item-top"><span class="name">Сертификационный экзамен (B2) в паре</span><span><span class="amt">220 зл</span> <span class="per">/60 хв.</span></span></div></div>
+        <div class="price-item"><div class="price-item-top"><span class="name">Экзамен TELC (B1-B2) в паре</span><span><span class="amt">200 зл</span> <span class="per">/60 хв.</span></span></div></div>
+        <div class="price-item"><div class="price-item-top"><span class="name">Карта поляка для двух человек</span><span><span class="amt">160 зл</span> <span class="per">/60 хв.</span></span></div></div>
+
+        <div class="shorter-note">
+          <strong>Хочаце скараціць або падоўжыць заняткі?</strong><br>
+          Доступны уроки <strong>45 минут</strong>.<br>
+          Для интенсивной работы — <strong>90 минут</strong>.
+        </div>
+      </div>
+
+      <div>
+        <h3>Пакеты заняткаў</h3>
+        <p class="sub"><strong>Лепшыя</strong> <strong>вынікі</strong> <strong>дае</strong> <strong>рэгулярнасць</strong>. Таму пакеты выбіраюць часцей за ўсё.</p>
+
+        <div class="pkg-item">
+          <button class="pkg-trigger open" onclick="togglePkg(this)">Сертыфікацыйны экзамен (B1) - індывідуальна<span class="pkg-icon">+</span></button>
+          <div class="pkg-body open">
+            <div class="pkg-row"><span>⭐ <strong>выбіраюць часцей за ўсё</strong></span><span class="pkg-popular">1556 зл / 12 уроков</span></div>
+            <div class="pkg-row"><span>8 уроков</span><span><strong>1064 зл</strong></span></div>
+            <div class="pkg-row"><span>4 урока</span><span><strong>542 зл</strong></span></div>
+          </div>
+        </div>
+        <div class="pkg-item">
+          <button class="pkg-trigger" onclick="togglePkg(this)">Сертыфікацыйны экзамен (B2) - індывідуальна<span class="pkg-icon">+</span></button>
+          <div class="pkg-body">
+            <div class="pkg-row"><span>12 уроков</span><span><strong>1798 зл</strong></span></div>
+            <div class="pkg-row"><span>⭐ <strong>выбіраюць часцей за ўсё</strong></span><span class="pkg-popular">1224 зл / 8 уроков</span></div>
+            <div class="pkg-row"><span>4 урока</span><span><strong>620 зл</strong></span></div>
+          </div>
+        </div>
+        <div class="pkg-item">
+          <button class="pkg-trigger" onclick="togglePkg(this)">Экзамен <strong>TELC (B1-B2) </strong> – індывідуальна<span class="pkg-icon">+</span></button>
+          <div class="pkg-body">
+            <div class="pkg-row"><span>12 уроков</span><span><strong>1435 зл</strong></span></div>
+            <div class="pkg-row"><span>⭐ <strong>выбіраюць часцей за ўсё</strong></span><span class="pkg-popular">978 зл / 8 уроков</span></div>
+            <div class="pkg-row"><span>4 урока</span><span><strong>504 зл</strong></span></div>
+          </div>
+        </div>
+        <div class="pkg-item">
+          <button class="pkg-trigger" onclick="togglePkg(this)">Картa паляка – індывідуальна<span class="pkg-icon">+</span></button>
+          <div class="pkg-body">
+            <div class="pkg-row"><span>⭐ <strong>выбіраюць часцей за ўсё</strong></span><span class="pkg-popular">1224 зл / 12 уроков</span></div>
+            <div class="pkg-row"><span>8 уроков</span><span><strong>832 зл</strong></span></div>
+            <div class="pkg-row"><span>4 урока</span><span><strong>428 зл</strong></span></div>
+          </div>
+        </div>
+        <div class="pkg-item">
+          <button class="pkg-trigger" onclick="togglePkg(this)">Сертыфікацыйны экзамен (B1) - у пары<span class="pkg-icon">+</span></button>
+          <div class="pkg-body">
+            <div class="pkg-row"><span>⭐ <strong>выбіраюць часцей за ўсё</strong></span><span class="pkg-popular">2136 зл / 12 уроков</span></div>
+            <div class="pkg-row"><span>8 уроков</span><span><strong>1456 зл</strong></span></div>
+            <div class="pkg-row"><span>4 урока</span><span><strong>740 зл</strong></span></div>
+          </div>
+        </div>
+        <div class="pkg-item">
+          <button class="pkg-trigger" onclick="togglePkg(this)">Сертыфікацыйны экзамен (B2) - у пары<span class="pkg-icon">+</span></button>
+          <div class="pkg-body">
+            <div class="pkg-row"><span>12 уроков</span><span><strong>2496 зл</strong></span></div>
+            <div class="pkg-row"><span>⭐ <strong>выбіраюць часцей за ўсё</strong></span><span class="pkg-popular">1703 зл / 8 уроков</span></div>
+            <div class="pkg-row"><span>4 урока</span><span><strong>864 зл</strong></span></div>
+          </div>
+        </div>
+
+                <div class="pkg-item">
+          <button class="pkg-trigger" onclick="togglePkg(this)">Экзамен <strong>TELC (B1-B2) </strong> – у пары<span class="pkg-icon">+</span></button>
+          <div class="pkg-body">
+            <div class="pkg-row"><span>⭐ <strong>выбіраюць часцей за ўсё</strong></span><span class="pkg-popular">2280 зл / 12 уроков</span></div>
+            <div class="pkg-row"><span>8 уроков</span><span><strong>1544 зл</strong></span></div>
+            <div class="pkg-row"><span>4 урока</span><span><strong>784 зл</strong></span></div>
+          </div>
+        </div>
+        <div class="pkg-item">
+          <button class="pkg-trigger" onclick="togglePkg(this)">Картa паляка - у пары<span class="pkg-icon">+</span></button>
+          <div class="pkg-body">
+            <div class="pkg-row"><span>12 уроков</span><span><strong>1798 зл</strong></span></div>
+            <div class="pkg-row"><span>⭐ <strong>выбіраюць часцей за ўсё</strong></span><span class="pkg-popular">1224 зл / 8 уроков</span></div>
+            <div class="pkg-row"><span>4 урока</span><span><strong>620 зл</strong></span></div>
+          </div>
+        </div>
+<div class="referral-acc">
+          <button class="referral-trigger" onclick="toggleReferral(this)">🎁 П арэкамендуйце мяне аднаму — выйграеце абодва<span class="pkg-icon">+</span></button>
+          <div class="referral-body">
+            <p>Калі вы парэкамендуеце мае заняткі сябру, які вырашыць вучыцца са мной, абодва атрымаюць разавую зніжку:</p>
+            <p><strong>-10%</strong> на разавы занятак; <strong>дополнительно -4%</strong> на пакет; <strong>-100 зл</strong> на пакеты для пар; <strong>-150 зл</strong> на пакеты для троих.</p>
+            <p>Скидки предоставляются однократно 🙂</p>
+          </div>
+        </div>
+
+        <div style="margin-top:1.5rem;font-size:0.88rem;color:var(--text-light);line-height:1.6;">
+          Аплата вырабляецца загадзя за заняткі. Падрабязнасці ў <a href="faq.html">FAQ</a>.
+        </div>
+      </div>
+    </div>
+
+    <div class="payment-note">
+      <p>Вам не трэба выбіраць пакет прама цяпер. Многія пачынаюць з <strong>пробнага</strong> <strong>ўрока</strong> і вырашаюць пазней.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section style="background:var(--blue-bg);">
+  <div class="test-cta">
+    <h2>Не ведаеце свой узровень польскага?</h2>
+    <a href="test.html" class="btn">Прайсці тэст</a>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section" style="background:#fff;">
+  <div class="container final-cta">
+    <h2>Гатовыя да рэальнага прагрэсу ў польскім?</h2>
+    <div class="final-grid">
+      <div>
+        <p class="final-cal-title">Запішыцеся на пробны ўрок!</p>
+        <p class="final-cal-sub">Начните с <strong>бясплатнага пробнага ўрока</strong> — паглядзіце, як праходзяць заняткі, і толькі потым вырашайце.</p>
+        <div class="activenow-form-container activenow-trial-lesson-signup-panel-container">
+          <center><img src="https://www.activenow.io/assets/ripple.gif" width="80px" alt="Загрузка..."></center>
+          <script async src="https://app.activenow.io/external/trial_lesson_signup_panel/load_by_js?code=wSO9b3Qo5mtoA2q7&school_id=13220&signup_form_id=169175"></script>
+        </div>
+      </div>
+      <div>
+        <p class="final-cal-title">Няма падыходнага варыянту?</p>
+        <p class="final-cal-sub">Звяжыцеся са мной!</p>
+        <form id="egz-contact-form" novalidate>
+          <div class="form-group"><label for="egz-name">Ваша імя *</label><input type="text" id="egz-name" name="name" required></div>
+          <div class="form-group"><label for="egz-email">E-mail *</label><input type="email" id="egz-email" name="email" required placeholder="@"></div>
+          <div class="form-group"><label for="egz-telegram">Нік у <strong>Telegram</strong></label><input type="text" id="egz-telegram" name="telegram"></div>
+          <div class="form-group">
+            <label>Мой узровень мовы</label>
+            <div class="radio-group">
+              <label><input type="radio" name="poziom" value="A0"> A0</label>
+              <label><input type="radio" name="poziom" value="A1"> A1</label>
+              <label><input type="radio" name="poziom" value="A2"> A2</label>
+              <label><input type="radio" name="poziom" value="B1"> B1</label>
+              <label><input type="radio" name="poziom" value="B2"> B2</label>
+              <label><input type="radio" name="poziom" value="не ведаю"> не ведаю</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="egz-zajecia">Заняткі, якія мяне цікавяць:</label>
+            <select id="egz-zajecia" name="zajecia">
+              <option>Індывідуальныя ўрокі</option>
+              <option>Заняткі ў міні-групах</option>
+              <option selected>Падрыхтоўка да экзамену</option>
+              <option>Другое / есть вопрос</option>
+            </select>
+          </div>
+          <div class="form-group"><label for="egz-msg">Паведамленне</label><textarea id="egz-msg" name="message"></textarea></div>
+          <div class="gdpr-check">
+            <input type="checkbox" id="egz-gdpr" name="gdpr">
+            <label for="egz-gdpr">Я даю согласие на обработку моих персональных данных для ответа на запрос. Ознакомился/-ась с <a href="polityka-prywatnosci.html">Политикой конфиденциальности</a>.</label>
+          </div>
+          <div class="gdpr-error" style="display:none;color:red;font-size:0.82rem;margin-bottom:0.8rem;">Адзначце згоду на апрацоўку дадзеных.</div>
+          <button type="submit" class="btn" id="egz-submit" disabled>Напісаць мне</button>
+          <p class="form-note">На паведамленні адказваю звычайна на працягу 24 гадзін.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="../polityka-prywatnosci.html">Палітыка прыватнасці</a>
+    <a href="../regulamin.html">Рэгламент</a>
+  </div>
+  <div>© 2026 | IB Polish | Усе правы абаронены</div>
+</footer>
+<script src="../nav.js"></script>
+<script>
+function togglePkg(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  document.querySelectorAll('.pkg-trigger.open').forEach(b => { b.classList.remove('open'); b.nextElementSibling.classList.remove('open'); });
+  if (!isOpen) { btn.classList.add('open'); body.classList.add('open'); }
+}
+function toggleReferral(btn) {
+  const body = btn.nextElementSibling;
+  btn.classList.toggle('open'); body.classList.toggle('open');
+  const icon = btn.querySelector('.pkg-icon');
+  icon.style.transform = body.classList.contains('open') ? 'rotate(45deg)' : '';
+}
+</script>
+<script>setupContactForm('egz-contact-form', 'https://formspree.io/f/mpqjynbg');</script>
+</body>
+</html>

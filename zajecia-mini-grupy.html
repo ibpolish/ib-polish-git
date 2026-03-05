@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zajęcia w&nbsp;mini grupach – IB Polish</title>
+  <link rel="icon" href="logo.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* wymuszony kolor nagłówków */
+    h1, h2, h3 { color: #5b9ab5 !important; }
+    .btn { background: #5b9ab5 !important; }
+    .btn:hover { background: #7ab5cc !important; }
+
+    .mg-intro { max-width: 860px; margin: 0 auto; text-align: center; padding: 4rem 2rem 3rem; }
+    .mg-intro h1 { margin-bottom: 1.2rem; }
+    .mg-intro p { font-size: 1rem; line-height: 1.8; }
+
+    .mg-main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .mg-main .list-col h2 { font-size: 1.25rem; color: var(--blue); margin-bottom: 0.8rem; }
+    .mg-main .list-col .check-list { margin-bottom: 1.2rem; }
+    .mg-main .list-col .check-list li { font-size: 0.97rem; line-height: 1.7; }
+    .mg-main .list-col hr { border: none; border-top: 1px solid var(--border); margin: 1.2rem 0; }
+    .mg-main .img-col img { width: 100%; border-radius: 16px; box-shadow: 0 8px 32px rgba(91,154,181,0.18); }
+    .price-box { background: var(--blue-bg); border-radius: var(--radius); padding: 1.2rem 1.5rem; margin-top: 1.5rem; text-align: center; border: 1px solid var(--border); }
+    .price-box .label { font-weight: 700; font-size: 0.92rem; margin-bottom: 0.3rem; }
+    .price-box .big { font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 600; color: var(--blue); margin-bottom: 0.4rem; }
+    .price-box .note { font-size: 0.82rem; color: var(--text-light); line-height: 1.5; }
+    @media (max-width: 768px) {
+      .mg-main { grid-template-columns: 1fr; }
+      .mg-main .img-col { order: -1; }
+    }
+
+    /* features */
+    .features-mg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; max-width: 1100px; margin: 0 auto; }
+    @media (max-width: 768px) { .features-mg { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .features-mg { grid-template-columns: 1fr; } }
+    .fi { display: flex; flex-direction: column; text-align: center; align-items: center; }
+    .fi-top { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.7rem; justify-content: center; }
+    .fi-emoji { font-size: 1.8rem; color: var(--blue); }
+    .fi-top h3 { font-size: 1rem; color: var(--blue); font-family: 'Nunito', sans-serif; font-weight: 700; margin: 0; }
+    .fi p { font-size: 0.92rem; color: var(--text); line-height: 1.7; text-align: center; }
+
+    /* cennik */
+    .cennik-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1100px; margin: 0 auto; align-items: start; }
+    @media (max-width: 768px) { .cennik-grid { grid-template-columns: 1fr; } }
+    .cennik-grid h3 { font-size: 1.3rem; text-align: center; margin-bottom: 0.4rem; color: var(--blue); font-family: 'Nunito', sans-serif; font-weight: 700; }
+    .cennik-grid .sub { text-align: center; font-size: 0.88rem; margin-bottom: 1.5rem; }
+
+    .price-item { padding: 1rem 0; border-bottom: 1px solid var(--border); }
+    .price-item:last-of-type { border-bottom: none; }
+    .price-item-top { display: flex; justify-content: space-between; align-items: baseline; }
+    .price-item-top .name { font-size: 0.95rem; color: var(--blue); font-weight: 600; flex: 1; padding-right: 1rem; }
+    .price-item-top .amt { font-family: 'Lora', serif; font-size: 1.3rem; color: var(--blue); font-weight: 600; white-space: nowrap; }
+    .price-item-top .per { font-size: 0.75rem; color: var(--text-light); font-family: 'Nunito', sans-serif; }
+    .price-item .desc { font-size: 0.82rem; color: var(--text-light); margin-top: 0.2rem; }
+    .shorter-note { background: var(--blue-bg); border-radius: 8px; padding: 1rem 1.2rem; margin-top: 1.2rem; font-size: 0.9rem; line-height: 1.7; }
+
+    .pkg-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 0.6rem; overflow: hidden; }
+    .pkg-trigger {
+      width: 100%; background: #fff; border: none; cursor: pointer;
+      padding: 1rem 1.2rem; display: flex; justify-content: space-between; align-items: center;
+      font-family: 'Nunito', sans-serif; font-size: 0.93rem; font-weight: 600;
+      color: var(--blue); text-align: left; transition: background 0.2s;
+    }
+    .pkg-trigger:hover { background: var(--blue-bg); }
+    .pkg-trigger.open { background: var(--blue-bg); }
+    .pkg-icon { font-size: 1.2rem; line-height: 1; transition: transform 0.3s; flex-shrink: 0; }
+    .pkg-trigger.open .pkg-icon { transform: rotate(45deg); }
+    .pkg-body { display: none; background: #f9fbfc; border-top: 1px solid var(--border); padding: 0.8rem 1.2rem; }
+    .pkg-body.open { display: block; }
+    .pkg-row { display: flex; justify-content: space-between; padding: 0.45rem 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+    .pkg-row:last-child { border-bottom: none; }
+    .pkg-popular { font-weight: 700; color: var(--blue); }
+
+    .referral-acc { border: 1px solid var(--border); border-radius: var(--radius); margin-top: 0.6rem; overflow: hidden; }
+    .referral-trigger {
+      width: 100%; background: #fff; border: none; cursor: pointer;
+      padding: 1rem 1.2rem; display: flex; justify-content: space-between; align-items: center;
+      font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 600;
+      color: var(--blue); text-align: left; transition: background 0.2s;
+    }
+    .referral-trigger:hover { background: var(--blue-bg); }
+    .referral-body { display: none; background: #f9fbfc; border-top: 1px solid var(--border); padding: 1rem 1.2rem; font-size: 0.88rem; line-height: 1.7; }
+    .referral-body.open { display: block; }
+
+    .payment-note { max-width: 700px; margin: 2.5rem auto 0; text-align: center; border-top: 1px solid var(--border); padding-top: 2rem; }
+
+    .test-cta { text-align: center; padding: 3.5rem 2rem; }
+    .test-cta h2 { margin-bottom: 1.5rem; }
+
+    .final-cta { text-align: center; }
+    .final-cta h2 { font-size: clamp(1.6rem, 3.5vw, 2.5rem); margin-bottom: 3rem; }
+    .final-cta h2 span { text-decoration: underline; }
+    .final-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1100px; margin: 0 auto; text-align: left; }
+    @media (max-width: 768px) { .final-grid { grid-template-columns: 1fr; } }
+    .final-cal-title { font-size: 1.2rem; color: var(--blue); font-weight: 700; text-align: center; margin-bottom: 0.8rem; }
+    .final-cal-sub { text-align: center; font-size: 0.92rem; margin-bottom: 1.5rem; }
+  
+/* Language switcher dropdown */
+.lang-switch-wrapper { position: relative; list-style: none; }
+.lang-switch-btn {
+  background: none; border: 1px solid var(--border);
+  border-radius: 6px; padding: 0.3rem 0.7rem;
+  font-family: 'Nunito', sans-serif; font-size: 0.88rem;
+  font-weight: 600; color: var(--blue); cursor: pointer;
+  white-space: nowrap; transition: background 0.2s;
+}
+.lang-switch-btn:hover { background: var(--blue-bg); }
+.lang-dropdown {
+  display: none; position: absolute; right: 0; top: 110%;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 8px; min-width: 150px; z-index: 1000;
+  box-shadow: 0 4px 16px rgba(91,154,181,0.12);
+  padding: 0.3rem 0;
+}
+.lang-dropdown.open { display: block; }
+.lang-dropdown a {
+  display: block; padding: 0.5rem 1rem;
+  font-size: 0.88rem; color: var(--text);
+  text-decoration: none; transition: background 0.15s;
+}
+.lang-dropdown a:hover { background: var(--blue-bg); color: var(--blue); }
+.lang-dropdown a.lang-active { font-weight: 700; color: var(--blue); }
+
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="logo.jpg" alt="IB Polish logo">
+    <span class="nav-logo-text">IB Polish</span>
+  </a>
+  <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
+    <li><a href="index.html">Strona główna</a></li>
+    <li><a href="o-mnie.html">O&nbsp;mnie</a></li>
+    <li class="nav-dropdown"><a href="oferta.html" class="active">Oferta</a>
+      <div class="dropdown-menu">
+        <a href="zajecia-indywidualne.html">Zajęcia indywidualne</a>
+        <a href="zajecia-mini-grupy.html">Zajęcia w&nbsp;mini grupach</a>
+        <a href="przygotowanie-do-egzaminu.html">Przygotowanie do egzaminu</a>
+      </div>
+    </li>
+    <li><a href="opinie.html">Opinie</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="test.html">Test językowy</a></li>
+    <li><a href="kontakt.html" class="btn" style="padding:0.45rem 1.2rem;font-size:0.88rem;">Kontakt</a></li>
+    <li class="lang-switch-wrapper">
+      <button class="lang-switch-btn" id="lang-switch-btn">🇵🇱 <span>PL</span> ▾</button>
+      <div class="lang-dropdown" id="lang-dropdown">
+        <a href="zajecia-mini-grupy.html" class="lang-active">🇵🇱 PL</a>
+        <a href="ru/zajecia-mini-grupy.html">🇷🇺 RU</a>
+        <a href="by/zajecia-mini-grupy.html">🇧🇾 BY</a>
+        <a href="ua/zajecia-mini-grupy.html">🇺🇦 UA</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<!-- ══ SEKCJA 1: INTRO ══ -->
+<section style="background:#fff;">
+  <div class="mg-intro">
+    <h1>Zajęcia w&nbsp;mini grupach</h1>
+    <p>Lekcje w&nbsp;mini grupach to zajęcia online w <strong>2–3 osobowych zespołach</strong>, stworzone dla osób, które chcą <strong>uczyć się regularnie</strong>, ale lubią dynamikę rozmowy i&nbsp;wzajemną motywację.<br>Grupy są kameralne, poziomowe i prowadzone w&nbsp;przyjaznej atmosferze — <strong>bez stresu</strong> i „znikania w&nbsp;tłumie".</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══ SEKCJA 2: LISTA PO LEWEJ, ZDJĘCIE PO PRAWEJ ══ -->
+<section class="section" style="background:#fff;">
+  <div class="mg-main">
+    <div class="list-col">
+      <h2>Te zajęcia są dla Ciebie, jeśli:</h2>
+      <ul class="check-list">
+        <li>chcesz <strong>więcej mówić po polsku</strong>, ale niekoniecznie 1:1;</li>
+        <li>lubisz uczyć się w&nbsp;towarzystwie i <strong>motywuje Cię regularność</strong>;</li>
+        <li>zależy Ci na <strong>niższej cenie</strong> niż przy zajęciach indywidualnych;</li>
+        <li>chcesz ćwiczyć język <strong>w&nbsp;realnych dialogach</strong>, a nie tylko z&nbsp;lektorką;</li>
+        <li>masz znajomego/znajomą i&nbsp;chcecie <strong>uczyć się razem</strong>.</li>
+      </ul>
+      <hr>
+      <h2>Dzięki zajęciom w&nbsp;mini grupie:</h2>
+      <ul class="check-list">
+        <li>mówicie po polsku <strong>pewniej i&nbsp;naturalniej</strong>;</li>
+        <li>rozumiecie, <em><strong>dlaczego</strong></em> coś mówimy tak, a&nbsp;nie inaczej;</li>
+        <li>uczycie się <strong>bez presji</strong> i&nbsp;oceniania;</li>
+        <li>macie jasny plan nauki i <strong>realne</strong> postępy;</li>
+        <li>możecie zadawać <strong>pytania bez skrępowania</strong>.</li>
+      </ul>
+      <hr>
+      <h2>Jak pracujemy na zajęciach w&nbsp;mini grupie?</h2>
+      <ul class="check-list">
+        <li>zajęcia odbywają się <strong>na żywo (Zoom)</strong>;</li>
+        <li>lekcja trwa standardowo <strong>60 minut</strong> z&nbsp;możliwością skrócenia/przedłużenia;</li>
+        <li>program jest dopasowany do <strong>Waszego</strong> celu (mówienie, gramatyka, fonetyka);</li>
+        <li>pracujemy na <strong>autentycznych materiałach i sytuacjach z&nbsp;życia</strong>;</li>
+        <li><strong>każdy</strong> ma przestrzeń do mówienia;</li>
+        <li>dużo <strong>mówienia</strong>, jasne wyjaśnienia, spokojne tempo.</li>
+      </ul>
+      <p style="margin-top:1rem;font-size:0.97rem;"><strong>Nie pracujemy „według szablonu".</strong> Każde zajęcia są przygotowane pod konkretnych uczniów.</p>
+    </div>
+    <div class="img-col">
+      <img src="img_group.png" alt="Zajęcia w mini grupach online">
+      <div class="price-box">
+        <p class="label">Cena zajęć w&nbsp;mini grupie:</p>
+        <p class="big">od 57 zł / osoba / 60 minut</p>
+        <p class="note">Cena zależy od częstotliwości zajęć i&nbsp;wybranego pakietu.<br>Szczegóły znajdziesz poniżej.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══ SEKCJA 3: FEATURES – WYŚRODKOWANE Z EMOJI NA NIEBIESKO ══ -->
+<section class="section" style="background:var(--blue-bg);">
+  <div class="container">
+    <h2 class="section-title" style="margin-bottom:2.5rem;">Lekcje polskiego w&nbsp;mini grupach, które naprawdę przyspieszają Wasze postępy</h2>
+    <div class="features-mg">
+      <div class="fi">
+        <div class="fi-top">
+          <span class="fi-emoji">👥</span>
+          <h3>Kameralne grupy, zero „znikania w&nbsp;tłumie"</h3>
+        </div>
+        <p><strong>Każdy</strong> ma przestrzeń do <strong>mówienia</strong> i realny kontakt z&nbsp;lektorką.</p>
+      </div>
+      <div class="fi">
+        <div class="fi-top">
+          <span class="fi-emoji">💬</span>
+          <h3>Naturalne rozmowy i&nbsp;interakcje</h3>
+        </div>
+        <p>Ćwiczymy <strong>dialogi, reakcje</strong> i <strong>prawdziwe rozmowy</strong> – tak, jak w&nbsp;życiu.</p>
+      </div>
+      <div class="fi">
+        <div class="fi-top">
+          <span class="fi-emoji">🏆</span>
+          <h3>Wzajemna motywacja</h3>
+        </div>
+        <p>Regularne <strong>spotkania</strong> i <strong>grupa</strong> działają lepiej niż silna wola.</p>
+      </div>
+      <div class="fi">
+        <div class="fi-top">
+          <span class="fi-emoji">💰</span>
+          <h3>Niższa cena, realna jakość</h3>
+        </div>
+        <p>Płacicie <strong>mniej</strong> niż za zajęcia 1:1, a&nbsp;nadal jest <strong>wysoki standard</strong> i&nbsp;indywidualne podejście.</p>
+      </div>
+      <div class="fi">
+        <div class="fi-top">
+          <span class="fi-emoji">📋</span>
+          <h3>Program dopasowany do grupy</h3>
+        </div>
+        <p><strong>Tempo, tematy</strong> i <strong>ćwiczenia</strong> są dobrane do Waszego poziomu i&nbsp;celu.</p>
+      </div>
+      <div class="fi">
+        <div class="fi-top">
+          <span class="fi-emoji">📈</span>
+          <h3>Stałe wsparcie i&nbsp;feedback</h3>
+        </div>
+        <p>Po każdej lekcji wiesz, co robisz <strong>dobrze</strong> i&nbsp;nad czym warto jeszcze <strong>popracować</strong>.</p>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:2.5rem;font-size:1rem;">✨ Mini grupa = więcej <strong>mówienia</strong>, więcej <strong>energii</strong>, więcej <strong>efektów</strong>.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══ SEKCJA 4: CENNIK ══ -->
+<section class="section" style="background:#fff;" id="cennik">
+  <div class="container">
+    <h2 class="section-title">Cennik</h2>
+    <p class="section-sub"><strong>Zajęcia próbne</strong> (do 30 minut) są <strong>bezpłatne i&nbsp;niezobowiązujące</strong>. Mają na celu zapoznanie się, sprawdzenie poziomu języka oraz zaproponowanie możliwych wariantów zajęć.</p>
+
+    <div class="cennik-grid">
+      <!-- LEWA: jednorazowe -->
+      <div>
+        <h3>Zajęcia w&nbsp;mini grupach (2–3 osoby)</h3>
+        <p class="sub">Kameralne grupy, więcej mówienia i&nbsp;aktywna praca każdego uczestnika.</p>
+
+        <div class="price-item">
+          <div class="price-item-top">
+            <span class="name">Lekcja języka polskiego online dla 2 osób (A1-A2)</span>
+            <span><span class="amt">140 zł</span> <span class="per">/60 min. · 2 osoby</span></span>
+          </div>
+          <div class="desc">zajęcia w parze, ogólny polski (A1-A2) z&nbsp;naciskiem na mówienie, gramatykę, fonetykę</div>
+        </div>
+        <div class="price-item">
+          <div class="price-item-top">
+            <span class="name">Lekcja języka polskiego online dla 2 osób (B1)</span>
+            <span><span class="amt">160 zł</span> <span class="per">/60 min. · 2 osoby</span></span>
+          </div>
+          <div class="desc">zajęcia w parze, ogólny polski (B1) z&nbsp;naciskiem na mówienie, gramatykę, fonetykę</div>
+        </div>
+        <div class="price-item">
+          <div class="price-item-top">
+            <span class="name">Lekcja języka polskiego online dla 3 osób (A1-A2)</span>
+            <span><span class="amt">190 zł</span> <span class="per">/60 min. · 3 osoby</span></span>
+          </div>
+          <div class="desc">zajęcia dla trojga, ogólny polski (A1-A2) z&nbsp;naciskiem na mówienie, gramatykę, fonetykę</div>
+        </div>
+        <div class="price-item">
+          <div class="price-item-top">
+            <span class="name">Lekcja języka polskiego online dla 3 osób (B1)</span>
+            <span><span class="amt">210 zł</span> <span class="per">/60 min. · 3 osoby</span></span>
+          </div>
+          <div class="desc">zajęcia dla trojga, ogólny polski (B1) z&nbsp;naciskiem na mówienie, gramatykę, fonetykę</div>
+        </div>
+
+        <div class="shorter-note">
+          <strong>Chcesz skrócić lub wydłużyć zajęcia?</strong><br>
+          Dla osób, które chcą pracować krócej, dostępne są lekcje <strong>45-minutowe</strong>.<br>
+          Dla osób chcących pracować intensywniej dostępne są lekcje <strong>90-minutowe</strong>.
+        </div>
+      </div>
+
+      <!-- PRAWA: pakiety wysuwane -->
+      <div>
+        <h3>Pakiety zajęć</h3>
+        <p class="sub"><strong>Najlepsze efekty robi regularność.</strong><br>Dlatego pakiety wybierane są najczęściej.</p>
+
+        <div class="pkg-item">
+          <button class="pkg-trigger open" onclick="togglePkg(this)">
+            Lekcje j. polskiego online dla dwóch osób (A1-A2) – 60 minut
+            <span class="pkg-icon">+</span>
+          </button>
+          <div class="pkg-body open">
+            <div class="pkg-row"><span>12 lekcji</span><span><strong>1560 zł</strong></span></div>
+            <div class="pkg-row"><span>⭐ <strong>najczęściej wybierany</strong></span><span class="pkg-popular">1064 zł / 8 lekcji</span></div>
+            <div class="pkg-row"><span>4 lekcje</span><span><strong>541 zł</strong></span></div>
+          </div>
+        </div>
+        <div class="pkg-item">
+          <button class="pkg-trigger" onclick="togglePkg(this)">
+            Lekcje j. polskiego online dla dwóch osób (B1) – 60 minut
+            <span class="pkg-icon">+</span>
+          </button>
+          <div class="pkg-body">
+            <div class="pkg-row"><span>12 lekcji</span><span><strong>1788 zł</strong></span></div>
+            <div class="pkg-row"><span>⭐ <strong>najczęściej wybierany</strong></span><span class="pkg-popular">1224 zł / 8 lekcji</span></div>
+            <div class="pkg-row"><span>4 lekcje</span><span><strong>624 zł</strong></span></div>
+          </div>
+        </div>
+        <div class="pkg-item">
+          <button class="pkg-trigger" onclick="togglePkg(this)">
+            Lekcje j. polskiego online dla trzech osób (A1-A2) – 60 minut
+            <span class="pkg-icon">+</span>
+          </button>
+          <div class="pkg-body">
+            <div class="pkg-row"><span>⭐ <strong>najczęściej wybierany</strong></span><span class="pkg-popular">2124 zł / 12 lekcji</span></div>
+            <div class="pkg-row"><span>8 lekcji</span><span><strong>1440 zł</strong></span></div>
+            <div class="pkg-row"><span>4 lekcje</span><span><strong>741 zł</strong></span></div>
+          </div>
+        </div>
+        <div class="pkg-item">
+          <button class="pkg-trigger" onclick="togglePkg(this)">
+            Lekcje j. polskiego online dla trzech osób (B1) – 60 minut
+            <span class="pkg-icon">+</span>
+          </button>
+          <div class="pkg-body">
+            <div class="pkg-row"><span>12 lekcji</span><span><strong>2316 zł</strong></span></div>
+            <div class="pkg-row"><span>⭐ <strong>najczęściej wybierany</strong></span><span class="pkg-popular">1584 zł / 8 lekcji</span></div>
+            <div class="pkg-row"><span>4 lekcje</span><span><strong>807 zł</strong></span></div>
+          </div>
+        </div>
+
+        <div class="referral-acc">
+          <button class="referral-trigger" onclick="toggleReferral(this)">
+            🎁 Poleć mnie znajomemu – oboje zyskujecie
+            <span class="pkg-icon">+</span>
+          </button>
+          <div class="referral-body">
+            <p>Jeśli polecisz moje zajęcia znajomemu, który <strong>zdecyduje się</strong> na naukę ze mną, <strong>oboje</strong> otrzymacie jednorazową <strong>zniżkę</strong>:</p>
+            <p><strong>-10%</strong> na jedne zajęcia jednorazowe (indywidualne lub w&nbsp;mini grupie);</p>
+            <p><strong>dodatkowe -4%</strong> na wybrany pakiet indywidualny;</p>
+            <p><strong>-100 zł</strong> na pakiety zajęć w&nbsp;parach;</p>
+            <p><strong>-150 zł</strong> na pakiety zajęć dla trzech osób.</p>
+            <p>Zniżki są nadawane jednorazowo. Lubię, kiedy języka uczymy się razem 🙂</p>
+          </div>
+        </div>
+
+        <div style="margin-top:1.5rem;font-size:0.88rem;color:var(--text-light);line-height:1.6;">
+          Płatność odbywa się z&nbsp;góry za zajęcia. Dzięki temu rezerwujesz <strong style="color:var(--text);">swój termin</strong> i&nbsp;masz <strong style="color:var(--text);">gwarancję miejsca</strong>. Szczegóły znajdziesz w <a href="faq.html">FAQ</a>.
+        </div>
+      </div>
+    </div>
+
+    <div class="payment-note">
+      <p>Nie musisz wybierać pakietu teraz.<br>Wiele osób zaczyna od <strong>lekcji próbnej</strong> i&nbsp;decyduje później.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══ SEKCJA 5: TEST ══ -->
+<section style="background:var(--blue-bg);">
+  <div class="test-cta">
+    <h2>Nie wiesz, jaki masz poziom języka?</h2>
+    <a href="test.html" class="btn">Wykonaj test</a>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══ SEKCJA 6: FINAL CTA ══ -->
+<section class="section" style="background:#fff;">
+  <div class="container final-cta">
+    <h2>Jesteś gotowy/gotowa<br>na <span>realny</span> postęp w&nbsp;polskim?</h2>
+    <div class="final-grid">
+      <div>
+        <p class="final-cal-title">Umów się na lekcję próbną!</p>
+        <p class="final-cal-sub">Nie musisz decydować teraz. Zacznij od <strong>bezpłatnej lekcji próbnej</strong> – zobaczysz, jak wyglądają zajęcia i&nbsp;dopiero potem zdecydujesz.</p>
+        <div class="activenow-form-container activenow-trial-lesson-signup-panel-container">
+          <center><img src="https://www.activenow.io/assets/ripple.gif" width="80px" alt="Ładowanie..."></center>
+          <script async src="https://app.activenow.io/external/trial_lesson_signup_panel/load_by_js?code=wSO9b3Qo5mtoA2q7&school_id=13220&signup_form_id=169175"></script>
+        </div>
+      </div>
+      <div>
+        <p class="final-cal-title">Nie ma interesującego Cię wariantu?</p>
+        <p class="final-cal-sub">Skontaktuj się ze mną!</p>
+        <form id="mini-contact-form" novalidate>
+          <div class="form-group">
+            <label for="mini-name">Twoje imię *</label>
+            <input type="text" id="mini-name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="mini-email">E-mail *</label>
+            <input type="email" id="mini-email" name="email" required placeholder="@">
+          </div>
+          <div class="form-group">
+            <label for="mini-telegram">Nick w Telegramie</label>
+            <input type="text" id="mini-telegram" name="telegram">
+          </div>
+          <div class="form-group">
+            <label>Mój poziom języka</label>
+            <div class="radio-group">
+              <label><input type="radio" name="poziom" value="A0"> A0</label>
+              <label><input type="radio" name="poziom" value="A1"> A1</label>
+              <label><input type="radio" name="poziom" value="A2"> A2</label>
+              <label><input type="radio" name="poziom" value="B1"> B1</label>
+              <label><input type="radio" name="poziom" value="B2"> B2</label>
+              <label><input type="radio" name="poziom" value="nie wiem"> nie wiem</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="mini-zajecia">Zajęcia, które mnie interesują:</label>
+            <select id="mini-zajecia" name="zajecia">
+              <option>Zajęcia indywidualne</option>
+              <option  selected>Zajęcia w mini grupach</option>
+              <option>Przygotowanie do egzaminu</option>
+              <option>Inne / mam pytanie</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="mini-msg">Wiadomość</label>
+            <textarea id="mini-msg" name="message"></textarea>
+          </div>
+          <div class="gdpr-check">
+            <input type="checkbox" id="mini-gdpr" name="gdpr">
+            <label for="mini-gdpr">Wyrażam zgodę na przetwarzanie moich danych osobowych w celu odpowiedzi na zapytanie i kontaktu w sprawie zajęć. Dane kontaktowe są wykorzystywane wyłącznie w celu odpowiedzi na zapytanie. Zapoznałem/-am się z <a href="polityka-prywatnosci.html">Polityką Prywatności</a>.</label>
+          </div>
+          <div class="gdpr-error" style="display:none;color:red;font-size:0.82rem;margin-bottom:0.8rem;">Zaznacz zgodę na przetwarzanie danych.</div>
+          <button type="submit" class="btn" id="mini-submit" disabled>Napisz do mnie</button>
+          <p class="form-note">Na wiadomości odpowiadam zwykle w ciągu <strong>24 godzin.</strong></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+    <a href="regulamin.html">Regulamin</a>
+  </div>
+  <div>© 2026 | IB Polish | Wszystkie prawa zastrzeżone</div>
+</footer>
+
+<script src="nav.js"></script>
+<script>
+function togglePkg(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  document.querySelectorAll('.pkg-trigger.open').forEach(b => {
+    b.classList.remove('open');
+    b.nextElementSibling.classList.remove('open');
+  });
+  if (!isOpen) { btn.classList.add('open'); body.classList.add('open'); }
+}
+function toggleReferral(btn) {
+  const body = btn.nextElementSibling;
+  btn.classList.toggle('open');
+  body.classList.toggle('open');
+  const icon = btn.querySelector('.pkg-icon');
+  icon.style.transform = body.classList.contains('open') ? 'rotate(45deg)' : '';
+}
+</script>
+<script>setupContactForm('mini-contact-form', 'https://formspree.io/f/mpqjynbg');</script>
+</body>
+</html>

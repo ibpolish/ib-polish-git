@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Відгуки – IB Polish</title>
+  <link rel="icon" href="../logo.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    h1, h2, h3 { color: #5b9ab5 !important; }
+    .btn { background: #5b9ab5 !important; }
+    .btn:hover { background: #7ab5cc !important; }
+    footer { padding: 1.8rem 2rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--text-light); flex-wrap: wrap; gap: 0.5rem; }
+    footer a { color: var(--text-light); }
+    footer a:hover { color: var(--blue); }
+    .footer-links { display: flex; gap: 2rem; }
+  
+/* Language switcher dropdown */
+.lang-switch-wrapper { position: relative; list-style: none; }
+.lang-switch-btn {
+  background: none; border: 1px solid var(--border);
+  border-radius: 6px; padding: 0.3rem 0.7rem;
+  font-family: 'Nunito', sans-serif; font-size: 0.88rem;
+  font-weight: 600; color: var(--blue); cursor: pointer;
+  white-space: nowrap; transition: background 0.2s;
+}
+.lang-switch-btn:hover { background: var(--blue-bg); }
+.lang-dropdown {
+  display: none; position: absolute; right: 0; top: 110%;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 8px; min-width: 150px; z-index: 1000;
+  box-shadow: 0 4px 16px rgba(91,154,181,0.12);
+  padding: 0.3rem 0;
+}
+.lang-dropdown.open { display: block; }
+.lang-dropdown a {
+  display: block; padding: 0.5rem 1rem;
+  font-size: 0.88rem; color: var(--text);
+  text-decoration: none; transition: background 0.15s;
+}
+.lang-dropdown a:hover { background: var(--blue-bg); color: var(--blue); }
+.lang-dropdown a.lang-active { font-weight: 700; color: var(--blue); }
+
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="../logo.jpg" alt="IB Polish logo">
+    <span class="nav-logo-text">IB Polish</span>
+  </a>
+  <button class="hamburger" aria-label="Меню"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
+    <li><a href="index.html">Головна</a></li>
+    <li><a href="o-mnie.html">Про мене</a></li>
+    <li class="nav-dropdown"><a href="oferta.html">Пропозиція</a>
+      <div class="dropdown-menu">
+        <a href="zajecia-indywidualne.html">Індивідуальні уроки</a>
+        <a href="zajecia-mini-grupy.html">Заняття в міні-групах</a>
+        <a href="przygotowanie-do-egzaminu.html">Підготовка до іспиту</a>
+      </div>
+    </li>
+    <li><a href="opinie.html" class="active">Відгуки</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="test.html">Мовний тест</a></li>
+    <li><a href="kontakt.html" class="btn" style="padding:0.45rem 1.2rem;font-size:0.88rem;">Контакт</a></li>
+    <li class="lang-switch-wrapper">
+      <button class="lang-switch-btn" id="lang-switch-btn">🇺🇦 <span>UA</span> ▾</button>
+      <div class="lang-dropdown" id="lang-dropdown">
+        <a href="../opinie.html">🇵🇱 PL</a>
+        <a href="../ru/opinie.html">🇷🇺 RU</a>
+        <a href="../by/opinie.html">🇧🇾 BY</a>
+        <a href="../ua/opinie.html" class="lang-active">🇺🇦 UA</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<section class="section section-white">
+  <div class="container">
+    <h1 class="section-title"><strong>Відгуки учеников</strong></h1>
+    <p class="section-sub">Мої учні приходять до мене з різними цілями — іспити, життя в Польщі, Робота, впевненість у мові. Подивіться, що вони говорять після спільної роботи.</p>
+
+    <div class="testimonials-grid" style="max-width:960px;margin:0 auto;">
+      <div class="testimonial">
+        <p>Здравствуйте! Я в восторге! Крутые курсы, классный учебник, потрясающая Изабелла! Добрая, веселая, очень любит свою страну, из-за чего очень много интересного нам рассказывала про Польшу. Я довольна на 100%! Если Изабелла ведет А2, я с удовольствием к ней пойду!</p>
+        <div class="author">~Женя</div>
+      </div>
+      <div class="testimonial">
+        <p>Спасибо огромное преподавателю Пани Изабелле! Невероятно позитивный человек, с которым очень легко общаться. Хорошие и грамотно построенные занятия, огромный вагон дополнительной информации! Всегда было интересно, а если возникали сложности, материал прорабатывался снова! Обязательно дальше буду учиться.</p>
+        <div class="author">~Наталья</div>
+      </div>
+      <div class="testimonial">
+        <p>Изочка, привет!) Получила результаты, экзамен сдан! Спасибо тебе огромное за подготовку ❤️ целую, обнимаю! Rozumienie ze słuchu – 93%, czytanie – 100%, pisanie – 88%, gramatyka – 92%, mówienie – 90%. Надумаю сдавать уровень выше — я знаю к кому обращаться!</p>
+        <div class="author">~Настя</div>
+      </div>
+      <div class="testimonial">
+        <p>Иза не похожа на всех остальных преподавателей, видно как она горит этим, чувствуется её безудержная энергия и страсть к преподаванию и изучению! Никакой лести, такие мои мысли и я так ощущаю.</p>
+        <div class="author">~Олег</div>
+      </div>
+      <div class="testimonial">
+        <p>Иза, привет! Пишу, чтобы сказать тебе большое спасибо, что когда-то именно на занятиях с тобой я преодолела языковой барьер. Вчера я успешно сдала языковой экзамен в NIL и полностью подтвердила свой диплом в Польше. Ещё раз огромное спасибо!!!</p>
+        <div class="author">~Вероника</div>
+      </div>
+      <div class="testimonial">
+        <p>Zdałam egzamin B1 na 87%. Bardzo dziękuję za przygotowanie do egzaminu. Naprawdę dzięki zajęciom z Izą, wiedziałam czego się spodziewać na egzaminie. Mieliśmy nie tak dużo zajęć, ale mnie to bardzo się przydało. Dziękuję jeszcze raz ❤️</p>
+        <div class="author">~Irina</div>
+      </div>
+      <div class="testimonial">
+        <p>Получила результаты экзамена. Большое спасибо за помощь! Подготовка оказалась исключительно эффективной и позволила мне чувствовать себя уверенно во всех частях экзамена. Очень благодарна за терпение, профессиональный подход и умение ясно объяснять. Огромное спасибо за всё!</p>
+        <div class="author">~Елена</div>
+      </div>
+      <div class="testimonial">
+        <p>Izo, dziękuję Ci za pomoc w przygotowaniu do egzaminu! Dzisiaj zdawałam egzamin i mam nadzieję, że go zdałam. Bez Twojej pomocy i wsparcia nie wiem co bym robiła. Wszystkie Twoje polecenia i pomoc się przydały. Dziękuję z całego serca 🌹❤️</p>
+        <div class="author">~Yana</div>
+      </div>
+      <div class="testimonial">
+        <p>Займаўся ў групе на ўзроўні А1 у пані Ізабэлы. Не памятаю, каб раней я так хацеў вучыцца. Чакаў кожныя занятки, бо было вельмі цікава і пазнавальна. Пані Ізабэла змагла стварыць абсалютна натуральную атмасферу для навучання і максімальна зацікавіць. 4 месяцы пралляцелі як адзін. Мэта дасягнута, веды атрыманы, і дзякуй пані Ізабэле за рацыянальны і адначасова чулы падыход да арганізацыі курса!</p>
+        <div class="author">~Сяргей</div>
+      </div>
+      <div class="testimonial">
+        <p>Вялікі дзякуй Пані Ізабеле! Вывучала з 0 да А1. Вельмі прыемная настаўніца, вельмі добра падае матэрыял, да і ўвогуле, носьбіт мовы! Будзем ісці далей, разам з ей!</p>
+        <div class="author">~Любоў</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-gray" style="text-align:center;">
+  <div class="container" style="max-width:620px;">
+    <h2><strong>Хочете таких же результатів?</strong></h2>
+    <p style="margin:1rem 0;">Кожен шлях починається з першої розмови. Безкоштовний пробний урок — найпростіший спосіб перевірити, чи підходить вам це.</p>
+    <a href="kontakt.html" class="btn">Зробити перший крок</a>
+    <p class="cta-note">індивідуально · спокійно · без тиску</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="../polityka-prywatnosci.html">Політика конфіденційності</a>
+    <a href="../regulamin.html">Регламент</a>
+  </div>
+  <div>© 2026 | IB Polish | Всі права захищені</div>
+</footer>
+<script src="../nav.js"></script>
+
+
+
+</body>
+</html>

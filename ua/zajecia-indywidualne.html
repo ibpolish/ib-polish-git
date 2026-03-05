@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Індивідуальні заняття – IB Polish</title>
+  <link rel="icon" href="../logo.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    h1, h2, h3 { color: #5b9ab5 !important; }
+    .btn { background: #5b9ab5 !important; }
+    .btn:hover { background: #7ab5cc !important; }
+    .ind-intro { max-width: 860px; margin: 0 auto; text-align: center; padding: 4rem 2rem 3rem; }
+    .ind-intro h1 { margin-bottom: 1.2rem; }
+    .ind-intro p { font-size: 1rem; line-height: 1.8; }
+    .ind-main { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    .ind-main .list-col h2 { font-size: 1.25rem; color: var(--blue); margin-bottom: 0.8rem; }
+    .ind-main .list-col .check-list { margin-bottom: 1.2rem; }
+    .ind-main .list-col .check-list li { font-size: 0.97rem; line-height: 1.7; }
+    .ind-main .list-col hr { border: none; border-top: 1px solid var(--border); margin: 1.2rem 0; }
+    .ind-main .img-col img { width: 100%; border-radius: 16px; box-shadow: 0 8px 32px rgba(91,154,181,0.18); }
+    .price-box { background: var(--blue-bg); border-radius: var(--radius); padding: 1.2rem 1.5rem; margin-top: 1.5rem; text-align: center; border: 1px solid var(--border); }
+    .price-box .label { font-weight: 700; font-size: 0.92rem; margin-bottom: 0.3rem; }
+    .price-box .big { font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 600; color: var(--blue); margin-bottom: 0.4rem; }
+    .price-box .note { font-size: 0.82rem; color: var(--text-light); line-height: 1.5; }
+    @media (max-width: 768px) { .ind-main { grid-template-columns: 1fr; } .ind-main .img-col { order: -1; } }
+    .features-ind { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; max-width: 1100px; margin: 0 auto; }
+    @media (max-width: 768px) { .features-ind { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .features-ind { grid-template-columns: 1fr; } }
+    .fi { display: flex; flex-direction: column; }
+    .fi-top { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.7rem; }
+    .fi-top svg { width: 32px; height: 32px; stroke: var(--blue); fill: none; flex-shrink: 0; }
+    .fi-top h3 { font-size: 1rem; color: var(--blue); font-family: 'Nunito', sans-serif; font-weight: 700; margin: 0; }
+    .fi p { font-size: 0.92rem; color: var(--text); line-height: 1.7; }
+    .cennik-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1100px; margin: 0 auto; align-items: start; }
+    @media (max-width: 768px) { .cennik-grid { grid-template-columns: 1fr; } }
+    .cennik-grid h3 { font-size: 1.3rem; text-align: center; margin-bottom: 0.4rem; color: var(--blue); font-family: 'Nunito', sans-serif; font-weight: 700; }
+    .cennik-grid .sub { text-align: center; font-size: 0.88rem; margin-bottom: 1.5rem; }
+    .price-item { padding: 1rem 0; border-bottom: 1px solid var(--border); }
+    .price-item:last-of-type { border-bottom: none; }
+    .price-item-top { display: flex; justify-content: space-between; align-items: baseline; }
+    .price-item-top .name { font-size: 1rem; color: var(--blue); font-weight: 600; flex: 1; padding-right: 1rem; }
+    .price-item-top .amt { font-family: 'Lora', serif; font-size: 1.3rem; color: var(--blue); font-weight: 600; white-space: nowrap; }
+    .price-item-top .per { font-size: 0.75rem; color: var(--text-light); font-family: 'Nunito', sans-serif; }
+    .price-item .desc { font-size: 0.82rem; color: var(--text-light); margin-top: 0.2rem; }
+    .shorter-note { background: var(--blue-bg); border-radius: 8px; padding: 1rem 1.2rem; margin-top: 1.2rem; font-size: 0.9rem; line-height: 1.7; }
+    .pkg-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 0.6rem; overflow: hidden; }
+    .pkg-trigger { width: 100%; background: #fff; border: none; cursor: pointer; padding: 1rem 1.2rem; display: flex; justify-content: space-between; align-items: center; font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--blue); text-align: left; transition: background 0.2s; }
+    .pkg-trigger:hover { background: var(--blue-bg); }
+    .pkg-trigger.open { background: var(--blue-bg); }
+    .pkg-icon { font-size: 1.2rem; line-height: 1; transition: transform 0.3s; }
+    .pkg-trigger.open .pkg-icon { transform: rotate(45deg); }
+    .pkg-body { display: none; background: #f9fbfc; border-top: 1px solid var(--border); padding: 0.8rem 1.2rem; }
+    .pkg-body.open { display: block; }
+    .pkg-row { display: flex; justify-content: space-between; padding: 0.45rem 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+    .pkg-row:last-child { border-bottom: none; }
+    .pkg-popular { font-weight: 700; color: var(--blue); }
+    .referral-acc { border: 1px solid var(--border); border-radius: var(--radius); margin-top: 0.6rem; overflow: hidden; }
+    .referral-trigger { width: 100%; background: #fff; border: none; cursor: pointer; padding: 1rem 1.2rem; display: flex; justify-content: space-between; align-items: center; font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--blue); text-align: left; transition: background 0.2s; }
+    .referral-trigger:hover { background: var(--blue-bg); }
+    .referral-body { display: none; background: #f9fbfc; border-top: 1px solid var(--border); padding: 1rem 1.2rem; font-size: 0.88rem; line-height: 1.7; }
+    .referral-body.open { display: block; }
+    .payment-note { max-width: 700px; margin: 2.5rem auto 0; text-align: center; border-top: 1px solid var(--border); padding-top: 2rem; }
+    .test-cta { text-align: center; padding: 3.5rem 2rem; }
+    .test-cta h2 { margin-bottom: 1.5rem; }
+    .final-cta { text-align: center; }
+    .final-cta h2 { font-size: clamp(1.6rem, 3.5vw, 2.5rem); margin-bottom: 3rem; }
+    .final-cta h2 span { text-decoration: underline; }
+    .final-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1100px; margin: 0 auto; text-align: left; }
+    @media (max-width: 768px) { .final-grid { grid-template-columns: 1fr; } }
+    .final-cal-title { font-size: 1.2rem; color: var(--blue); font-weight: 700; text-align: center; margin-bottom: 0.8rem; }
+    .final-cal-sub { text-align: center; font-size: 0.92rem; margin-bottom: 1.5rem; }
+    footer { padding: 1.8rem 2rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--text-light); flex-wrap: wrap; gap: 0.5rem; }
+    footer a { color: var(--text-light); } footer a:hover { color: var(--blue); }
+    .footer-links { display: flex; gap: 2rem; }
+  
+/* Language switcher dropdown */
+.lang-switch-wrapper { position: relative; list-style: none; }
+.lang-switch-btn {
+  background: none; border: 1px solid var(--border);
+  border-radius: 6px; padding: 0.3rem 0.7rem;
+  font-family: 'Nunito', sans-serif; font-size: 0.88rem;
+  font-weight: 600; color: var(--blue); cursor: pointer;
+  white-space: nowrap; transition: background 0.2s;
+}
+.lang-switch-btn:hover { background: var(--blue-bg); }
+.lang-dropdown {
+  display: none; position: absolute; right: 0; top: 110%;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 8px; min-width: 150px; z-index: 1000;
+  box-shadow: 0 4px 16px rgba(91,154,181,0.12);
+  padding: 0.3rem 0;
+}
+.lang-dropdown.open { display: block; }
+.lang-dropdown a {
+  display: block; padding: 0.5rem 1rem;
+  font-size: 0.88rem; color: var(--text);
+  text-decoration: none; transition: background 0.15s;
+}
+.lang-dropdown a:hover { background: var(--blue-bg); color: var(--blue); }
+.lang-dropdown a.lang-active { font-weight: 700; color: var(--blue); }
+
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="../logo.jpg" alt="IB Polish logo">
+    <span class="nav-logo-text">IB Polish</span>
+  </a>
+  <button class="hamburger" aria-label="Меню"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
+    <li><a href="index.html">Головна</a></li>
+    <li><a href="o-mnie.html">Про мене</a></li>
+    <li class="nav-dropdown"><a href="oferta.html" class="active">Пропозиція</a>
+      <div class="dropdown-menu">
+        <a href="zajecia-indywidualne.html">Індивідуальні уроки</a>
+        <a href="zajecia-mini-grupy.html">Заняття в міні-групах</a>
+        <a href="przygotowanie-do-egzaminu.html">Підготовка до іспиту</a>
+      </div>
+    </li>
+    <li><a href="opinie.html">Відгуки</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="test.html">Мовний тест</a></li>
+    <li><a href="kontakt.html" class="btn" style="padding:0.45rem 1.2rem;font-size:0.88rem;">Контакт</a></li>
+    <li class="lang-switch-wrapper">
+      <button class="lang-switch-btn" id="lang-switch-btn">🇺🇦 <span>UA</span> ▾</button>
+      <div class="lang-dropdown" id="lang-dropdown">
+        <a href="../zajecia-indywidualne.html">🇵🇱 PL</a>
+        <a href="../ru/zajecia-indywidualne.html">🇷🇺 RU</a>
+        <a href="../by/zajecia-indywidualne.html">🇧🇾 BY</a>
+        <a href="../ua/zajecia-indywidualne.html" class="lang-active">🇺🇦 UA</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<section style="background:#fff;">
+  <div class="ind-intro">
+    <h1>Індивідуальні уроки</h1>
+    <p>Я веду занятия как <strong>преподаватель польского как иностранного</strong> и <strong>экзаменатор</strong>,<br>с опытом работы со взрослыми учениками.<br>
+    <strong>Каждый урок</strong> создан под вашу цель: работу, жизнь в&nbsp;Польше или свободное общение.<br>
+    Онлайн-заняття 1:1, в режимі реального часу.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section" style="background:#fff;">
+  <div class="ind-main">
+    <div class="list-col">
+      <h2>Ці заняття для вас, якщо:</h2>
+      <ul class="check-list">
+        <li>хочете говорити польською <strong>вільніше</strong> і <strong>без стресу</strong>;</li>
+        <li>вчіться для роботи або життя в Польщі;</li>
+        <li>тільки починаєте своє знайомство з польською мовою;</li>
+        <li>вже займалися, але не вистачало структури;</li>
+        <li>цінуйте <strong>індивідуальний</strong> <strong>підхід</strong> і <strong>чіткий</strong> <strong>план</strong>;</li>
+        <li>хотите учиться у преподавателя, которая <strong>понимает трудности русскоязычных</strong>.</li>
+      </ul>
+      <hr>
+      <h2>Завдяки індивідуальним заняттям:</h2>
+      <ul class="check-list">
+        <li>говоріть польською <strong>впевненіше</strong> і <strong>природніше</strong>;</li>
+        <li>розумієте, <strong>чому</strong> ми говоримо саме так;</li>
+        <li>вчітесь <strong>без</strong> <strong>тиску</strong> і оцінювання;</li>
+        <li>маєте чіткий план навчання та <strong>реальні</strong> успіхи;</li>
+        <li>можете задавати <strong>питання</strong> <strong>без сорому</strong>.</li>
+      </ul>
+      <hr>
+      <h2>Як ми працюємо на індивідуальних заняттях?</h2>
+      <ul class="check-list">
+        <li>заняття проходять в <strong>прямому</strong> <strong>ефірі</strong> <strong>(Zoom)</strong>;</li>
+        <li>урок триває стандартно <strong>60</strong> <strong>хвилин</strong> з можливістю скорочення/продовження;</li>
+        <li>програма адаптована до <strong>вашої</strong> мети (розмова, граматика, фонетика);</li>
+        <li>працюємо з <strong>автентичними</strong> <strong>матеріалами</strong> та <strong>реальними</strong> <strong>життєвими</strong> <strong>ситуаціями</strong>;</li>
+        <li>багато <strong>розмовної</strong> <strong>практики</strong>, ясні пояснення, спокійний темп.</li>
+      </ul>
+      <p style="margin-top:1rem;font-size:0.97rem;">Ми не працюємо «за шаблоном». Кожне заняття підготовлено <strong>під конкретного учня</strong>.</p>
+    </div>
+    <div class="img-col">
+      <img src="../img_individual.png" alt="Индивидуальные онлайн-занятия польским">
+      <div class="price-box">
+        <p class="label">Вартість індивідуальних занять:</p>
+        <p class="big">от 92 зл / 60 хвилин</p>
+        <p class="note">Вартість залежить від частоти занять та обраного пакету. Подробиці нижче.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section" style="background:var(--blue-bg);">
+  <div class="container">
+    <h2 class="section-title" style="margin-bottom:2.5rem;">Індивідуальні уроки польської, які дійсно прискорюють ваш прогрес</h2>
+    <div class="features-ind">
+      <div class="fi">
+        <div class="fi-top">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg>
+          <h3>Гнучкий розклад</h3>
+        </div>
+        <p>Ви вибираєте <strong>зручний</strong> час для занять і їх частоту, не підлаштовуючись ні під кого.</p>
+      </div>
+      <div class="fi">
+        <div class="fi-top">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <h3>100% уваги для вас</h3>
+        </div>
+        <p>Весь урок тільки про вас-ваших <strong>цілях</strong>, <strong>труднощі</strong> і <strong>темпі</strong> <strong>навчання</strong>. Нічого не пропустіть.</p>
+      </div>
+      <div class="fi">
+        <div class="fi-top">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><polyline points="3 6 4 7 6 5"/><polyline points="3 12 4 13 6 11"/><polyline points="3 18 4 19 6 17"/></svg>
+          <h3>Ясні пояснення, ніякого хаосу</h3>
+        </div>
+        <p>Граматика і фонетика пояснюються <strong>просто</strong> і <strong>логічно</strong> — так, щоб ви розуміли, чому говорите саме так.</p>
+      </div>
+      <div class="fi">
+        <div class="fi-top">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          <h3>Багато розмови з першого уроку</h3>
+        </div>
+        <p>Говоріть польською <strong>по-справжньому</strong>, а не «з підручника». Будуємо <strong>швидкість</strong> і <strong>впевненість</strong> крок за кроком.</p>
+      </div>
+      <div class="fi">
+        <div class="fi-top">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <h3>Швидкий і помітний прогрес</h3>
+        </div>
+        <p>Ми зосереджуємось на тому, що реально блокує вас, тому <strong>результати</strong> видно швидше, ніж у великих групах.</p>
+      </div>
+      <div class="fi">
+        <div class="fi-top">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          <h3>Постійна підтримка та зворотній зв'язок</h3>
+        </div>
+        <p>Після кожного уроку Ви знаєте, що робите <strong>добре</strong> і над чим ще варто <strong>попрацювати</strong>.</p>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:2.5rem;font-size:1rem;">✨ М Ми не вчимося за схемою. Кожен урок створюється <strong>під</strong> <strong>вас</strong>.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section" style="background:#fff;" id="cennik">
+  <div class="container">
+    <h2 class="section-title">Вартість занять</h2>
+    <p class="section-sub"><strong>Пробний</strong> <strong>урок</strong> (до 30 хвилин) — <strong>безкоштовний</strong> і <strong>без зобов'язань</strong>. Його мета-познайомитися, перевірити рівень мови і запропонувати можливі варіанти занять.</p>
+
+    <div class="cennik-grid">
+      <div>
+        <h3>Індивідуальні уроки</h3>
+        <p class="sub"><strong>Індивідуальні уроки (1:1)</strong><br>Полное внимание преподавателя, гибкий план и реальный прогресс в разговорной речи.</p>
+
+        <div class="price-item">
+          <div class="price-item-top">
+            <span class="name">Індивідуальний урок польської онлайн (A1-A2)</span>
+            <span><span class="amt">100 зл</span> <span class="per">/60 хв.</span></span>
+          </div>
+          <div class="desc">заняття 1: 1, загальна польська (A1-A2) з акцентом на розмову, граматику, фонетику</div>
+        </div>
+        <div class="price-item">
+          <div class="price-item-top">
+            <span class="name">Індивідуальний урок польської онлайн (B1)</span>
+            <span><span class="amt">110 зл</span> <span class="per">/60 хв.</span></span>
+          </div>
+          <div class="desc">заняття 1: 1, загальна польська (B1) з акцентом на розмову, граматику, фонетику</div>
+        </div>
+        <div class="price-item">
+          <div class="price-item-top">
+            <span class="name">Індивідуальний урок польської онлайн (B2)</span>
+            <span><span class="amt">120 зл</span> <span class="per">/60 хв.</span></span>
+          </div>
+          <div class="desc">заняття 1: 1, загальна польська (B2) з акцентом на розмову, граматику, фонетику</div>
+        </div>
+        <div class="shorter-note">
+          <strong>Х Хочете скоротити або продовжити заняття?</strong><br>
+          Доступны уроки <strong>45 минут</strong> для тех, кто хочет работать меньше.<br>
+          Для тех, кто хочет интенсивнее — уроки <strong>90 минут</strong>.
+        </div>
+      </div>
+
+      <div>
+        <h3>Пакети занять</h3>
+        <p class="sub"><strong>Кращі</strong> <strong>результати</strong> <strong>дає</strong> <strong>регулярність</strong>. Тому пакети вибирають найчастіше.</p>
+
+        <div class="pkg-item">
+          <button class="pkg-trigger open" onclick="togglePkg(this)">
+            Індивідуальні уроки польської онлайн (A1-A2)
+            <span class="pkg-icon">+</span>
+          </button>
+          <div class="pkg-body open">
+            <div class="pkg-row"><span>⭐ <strong>вибирають найчастіше</strong></span><span class="pkg-popular">1100 зл / 12 уроков</span></div>
+            <div class="pkg-row"><span>8 уроков</span><span><strong>760 зл</strong></span></div>
+            <div class="pkg-row"><span>4 урока</span><span><strong>390 зл</strong></span></div>
+          </div>
+        </div>
+        <div class="pkg-item">
+          <button class="pkg-trigger" onclick="togglePkg(this)">
+            Індивідуальні уроки польської онлайн (B1)
+            <span class="pkg-icon">+</span>
+          </button>
+          <div class="pkg-body">
+            <div class="pkg-row"><span>12 уроков</span><span><strong>1200 зл</strong></span></div>
+            <div class="pkg-row"><span>⭐ <strong>вибирають найчастіше</strong></span><span class="pkg-popular">840 зл / 8 уроков</span></div>
+            <div class="pkg-row"><span>4 урока</span><span><strong>430 зл</strong></span></div>
+          </div>
+        </div>
+        <div class="pkg-item">
+          <button class="pkg-trigger" onclick="togglePkg(this)">
+            Індивідуальні уроки польської онлайн (B2)
+            <span class="pkg-icon">+</span>
+          </button>
+          <div class="pkg-body">
+            <div class="pkg-row"><span>12 уроков</span><span><strong>1320 зл</strong></span></div>
+            <div class="pkg-row"><span>⭐ <strong>вибирають найчастіше</strong></span><span class="pkg-popular">920 зл / 8 уроков</span></div>
+            <div class="pkg-row"><span>4 урока</span><span><strong>470 зл</strong></span></div>
+          </div>
+        </div>
+
+        <div class="referral-acc">
+          <button class="referral-trigger" onclick="toggleReferral(this)">
+            🎁 Порекомендуйте мене другові — виграєте обидва
+            <span class="pkg-icon">+</span>
+          </button>
+          <div class="referral-body">
+            <p>Якщо ви порекомендуєте мої заняття другові, який вирішить вчитися зі мною, обидва отримають одноразову знижку:</p>
+            <p><strong>-10%</strong> на одне разове заняття (індивідуальне або в міні-групі);</p>
+            <p>додатково -4% на обраний індивідуальний пакет;</p>
+            <p>-100 зл на пакети для пар;</p>
+            <p>-150 зл на пакети для трьох осіб.</p>
+            <p>Знижки надаються одноразово. Люблю, коли мови вчаться разом 🙂</p>
+          </div>
+        </div>
+
+        <div style="margin-top:1.5rem;font-size:0.88rem;color:var(--text-light);line-height:1.6;">
+          Оплата здійснюється заздалегідь за заняття. Таким чином ви бронюєте <strong style="color:var(--text);">своё место</strong> и имеете <strong style="color:var(--text);">гарантію запису</strong>. Подробности в <a href="faq.html">FAQ</a>.
+        </div>
+      </div>
+    </div>
+
+    <div class="payment-note">
+      <p>Вам не потрібно вибирати пакет прямо зараз. Багато хто починає з <strong>пробного</strong> <strong>уроку</strong> і вирішує пізніше.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section style="background:var(--blue-bg);">
+  <div class="test-cta">
+    <h2>Не знаєте свій рівень польської?</h2>
+    <a href="test.html" class="btn">Пройти тест</a>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section" style="background:#fff;">
+  <div class="container final-cta">
+    <h2>Готові до реального прогресу в польському?</h2>
+    <div class="final-grid">
+      <div>
+        <p class="final-cal-title">Запишіться на пробний урок!</p>
+        <p class="final-cal-sub">Вам не нужно решать прямо сейчас. Начните с <strong>безкоштовного пробного уроку</strong> — подивіться, як проходять заняття, і тільки потім вирішуйте.</p>
+        <div class="activenow-form-container activenow-trial-lesson-signup-panel-container">
+          <center><img src="https://www.activenow.io/assets/ripple.gif" width="80px" alt="Загрузка..."></center>
+          <script async src="https://app.activenow.io/external/trial_lesson_signup_panel/load_by_js?code=wSO9b3Qo5mtoA2q7&school_id=13220&signup_form_id=169175"></script>
+        </div>
+      </div>
+      <div>
+        <p class="final-cal-title">Немає відповідного варіанту?</p>
+        <p class="final-cal-sub">Зв'яжіться зі мною!</p>
+        <form id="ind-contact-form" novalidate>
+          <div class="form-group">
+            <label for="ind-name">Ваше ім'я *</label>
+            <input type="text" id="ind-name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="ind-email">E-mail *</label>
+            <input type="email" id="ind-email" name="email" required placeholder="@">
+          </div>
+          <div class="form-group">
+            <label for="ind-telegram">Нік у <strong>Telegram</strong></label>
+            <input type="text" id="ind-telegram" name="telegram">
+          </div>
+          <div class="form-group">
+            <label>Мій рівень мови</label>
+            <div class="radio-group">
+              <label><input type="radio" name="poziom" value="A0"> A0</label>
+              <label><input type="radio" name="poziom" value="A1"> A1</label>
+              <label><input type="radio" name="poziom" value="A2"> A2</label>
+              <label><input type="radio" name="poziom" value="B1"> B1</label>
+              <label><input type="radio" name="poziom" value="B2"> B2</label>
+              <label><input type="radio" name="poziom" value="не знаю"> не знаю</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="ind-zajecia">Заняття, які мене цікавлять:</label>
+            <select id="ind-zajecia" name="zajecia">
+              <option selected>Індивідуальні уроки</option>
+              <option>Заняття в міні-групах</option>
+              <option>Підготовка до іспиту</option>
+              <option>Другое / есть вопрос</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="ind-msg">Повідомлення</label>
+            <textarea id="ind-msg" name="message"></textarea>
+          </div>
+          <div class="gdpr-check">
+            <input type="checkbox" id="ind-gdpr" name="gdpr">
+            <label for="ind-gdpr">Я даю согласие на обработку моих персональных данных для ответа на запрос и контакта по поводу занятий. Ознакомился/-ась с <a href="polityka-prywatnosci.html">Политикой конфиденциальности</a>.</label>
+          </div>
+          <div class="gdpr-error" style="display:none;color:red;font-size:0.82rem;margin-bottom:0.8rem;">Відзначте згоду на обробку даних.</div>
+          <button type="submit" class="btn" id="ind-submit" disabled>Написати мені</button>
+          <p class="form-note">На повідомлення відповідаю зазвичай протягом 24 годин.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="../polityka-prywatnosci.html">Політика конфіденційності</a>
+    <a href="../regulamin.html">Регламент</a>
+  </div>
+  <div>© 2026 | IB Polish | Всі права захищені</div>
+</footer>
+<script src="../nav.js"></script>
+<script>
+function togglePkg(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  document.querySelectorAll('.pkg-trigger.open').forEach(b => { b.classList.remove('open'); b.nextElementSibling.classList.remove('open'); });
+  if (!isOpen) { btn.classList.add('open'); body.classList.add('open'); }
+}
+function toggleReferral(btn) {
+  const body = btn.nextElementSibling;
+  btn.classList.toggle('open');
+  body.classList.toggle('open');
+  const icon = btn.querySelector('.pkg-icon');
+  icon.style.transform = body.classList.contains('open') ? 'rotate(45deg)' : '';
+}
+</script>
+<script>setupContactForm('ind-contact-form', 'https://formspree.io/f/mpqjynbg');</script>
+</body>
+</html>
